@@ -1,6 +1,6 @@
 # Ionic and Firebase
 
-Hi, I'm Steve and my passion is building apps using Ionic and Firebase.
+Hi, I'm Steve and my passion is learning how to build apps using Ionic and Firebase.
 The goal of this repository is to attempt to bring together all the latest versions of Ionic and Firebase, combined with research
 from the Internet, and present it through a working example code.
 
