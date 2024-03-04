@@ -1,0 +1,192 @@
+<form [formGroup]="portfolioForm">
+  <ion-card>
+    <ion-card-header color="secondary"></ion-card-header>
+    <ion-card-content class="ion-padding" color="light" width="100%">
+      <ion-list>
+        <ion-item (click)="showPicker = !showPicker">
+          <ion-input value="{{formattedDate}}"
+          label="Creation Date"></ion-input>
+        </ion-item>
+        <ion-datetime *ngIf="showPicker"
+          #datetime
+          [value]="dateValue"
+          size="cover"
+          presentation="date"
+          min="{{fromDate}}"
+          max="{{toDate}}"
+          (ionChange)="dateChanged(datetime.value)"
+          showDefaultButtons="false">
+        </ion-datetime>
+
+        <ion-item>
+          <ion-input formControlName="name" type="text" placeholder="What's your portfolio's name?"
+            label="Portfolio Name" [class.invalid]="!portfolioForm.controls['name'].valid && portfolioForm.controls['name'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!portfolioForm.controls['name'].valid &&
+            portfolioForm.controls['name'].touched">
+          <ion-label>Please enter a portfolio name.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="number" type="text" placeholder="What's your portfolio's account number?"
+            label="Account Number" [class.invalid]="!portfolioForm.controls['number'].valid && portfolioForm.controls['number'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!portfolioForm.controls['number'].valid &&
+            portfolioForm.controls['number'].touched">
+          <ion-label>Please enter an account number greater than 6 digits long.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="onlineid" type="text" placeholder="What's your portfolio's online ID?"
+          label="Online ID" [class.invalid]="!portfolioForm.controls['onlineid'].valid && portfolioForm.controls['onlineid'].touched">
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="passwordhint" type="text" placeholder="Think of a password hint"
+            label="Password hint (not your password!)" [class.invalid]="!portfolioForm.controls['passwordhint'].valid && portfolioForm.controls['passwordhint'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!portfolioForm.controls['passwordhint'].valid &&
+            portfolioForm.controls['passwordhint'].touched">
+          <ion-label>Please enter a password hint!.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="memorableplace" type="text" placeholder="Enter a memorable place if applicable"
+            label="Memorable place" [class.invalid]="!portfolioForm.controls['memorableplace'].valid && portfolioForm.controls['memorableplace'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!portfolioForm.controls['memorableplace'].valid &&
+            portfolioForm.controls['memorableplace'].touched">
+          <ion-label>Please enter a memorable place.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="memorablename" type="text" placeholder="Enter a memorable name if applicable"
+            label="Memorable name" [class.invalid]="!portfolioForm.controls['memorablename'].valid && portfolioForm.controls['memorablename'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!portfolioForm.controls['memorablename'].valid &&
+            portfolioForm.controls['memorablename'].touched">
+          <ion-label>Please enter a memorable name.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="memorabledate" type="text" placeholder="Enter a memorable date if applicable"
+            label="Memorable date" [class.invalid]="!portfolioForm.controls['memorabledate'].valid && portfolioForm.controls['memorabledate'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!portfolioForm.controls['memorabledate'].valid &&
+            portfolioForm.controls['memorabledate'].touched">
+          <ion-label>Please enter a memorable date.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="initialcash" type="number" placeholder="£"
+            label="Opening Cash Balance" [class.invalid]="!portfolioForm.controls['initialcash'].valid && portfolioForm.controls['initialcash'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!portfolioForm.controls['initialcash'].valid &&
+          portfolioForm.controls['initialcash'].touched">
+          <ion-label>You must provide an opening cash balance.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="balance" type="number" placeholder="£"
+            label="Existing Cash Balance" [class.invalid]="!portfolioForm.controls['balance'].valid && portfolioForm.controls['balance'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!portfolioForm.controls['balance'].valid &&
+          portfolioForm.controls['balance'].touched">
+          <ion-label>You must provide an existing cash balance.</ion-label>
+        </ion-item>
+        
+        <ion-item>
+          <ion-input formControlName="initialstocksbalance" type="number" placeholder="£"
+          label="Initial stocks balance" [class.invalid]="!portfolioForm.controls['initialstocksbalance'].valid && portfolioForm.controls['initialstocksbalance'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!portfolioForm.controls['initialstocksbalance'].valid &&
+            portfolioForm.controls['initialstocksbalance'].touched">
+          <ion-label>You must provide an initial stocks balance.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="stocksbalance" type="number" placeholder="£"
+          label="Existing stocks balance" [class.invalid]="!portfolioForm.controls['stocksbalance'].valid && portfolioForm.controls['stocksbalance'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!portfolioForm.controls['stocksbalance'].valid &&
+            portfolioForm.controls['stocksbalance'].touched">
+          <ion-label>You must provide an existing stocks balance.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="initialtrustsbalance" type="number" placeholder="£"
+          label="Initial trusts balance" [class.invalid]="!portfolioForm.controls['initialtrustsbalance'].valid && portfolioForm.controls['initialtrustsbalance'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!portfolioForm.controls['initialtrustsbalance'].valid &&
+            portfolioForm.controls['initialtrustsbalance'].touched">
+          <ion-label>You must provide an initial trusts balance.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="trustsbalance" type="number" placeholder="£"
+          label="Exisitng trusts balance" [class.invalid]="!portfolioForm.controls['trustsbalance'].valid && portfolioForm.controls['trustsbalance'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!portfolioForm.controls['trustsbalance'].valid &&
+            portfolioForm.controls['trustsbalance'].touched">
+          <ion-label>You must provide an exisitng trusts balance.</ion-label>
+        </ion-item>
+        
+        <ion-item>
+          <ion-input formControlName="charge" type="number" placeholder="£"
+          label="Default transaction charge?" [class.invalid]="!portfolioForm.controls['charge'].valid && portfolioForm.controls['charge'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!portfolioForm.controls['charge'].valid &&
+            portfolioForm.controls['charge'].touched">
+          <ion-label>Please provide the default transaction charge or fee.</ion-label>
+        </ion-item>
+        
+        <ion-item>
+          <ion-select formControlName="taxable" interface="popover" label="Portfolio taxable?"
+            [class.invalid]="!portfolioForm.controls['taxable'].valid && portfolioForm.controls['taxable'].touched">
+            <ion-select-option value="SIPP">SIPP (No)</ion-select-option>
+            <ion-select-option value="ISA">ISA (No)</ion-select-option>
+            <ion-select-option value="Trading">Trading (Yes)</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!portfolioForm.controls['taxable'].valid &&
+        portfolioForm.controls['taxable'].touched">
+          <ion-label>Select portfolio tax option.</ion-label>
+        </ion-item>
+
+      <ion-item>
+        <ion-select formControlName="forecast" interface="popover" label="Include in forecast?"
+          [class.invalid]="!portfolioForm.controls['forecast'].valid&& portfolioForm.controls['forecast'].touched">
+          <ion-select-option [value]="false">No</ion-select-option>
+          <ion-select-option [value]="true">Yes</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="!portfolioForm.controls['forecast'].valid &&
+        portfolioForm.controls['forecast'].touched">
+        <ion-label>Include in forecast calculations?</ion-label>
+      </ion-item>
+
+        <ion-item>
+          <ion-textarea formControlName="notes" rows="6" cols="20" label="Notes">
+          </ion-textarea>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-button (click)="submitCredentials(portfolioForm)" expand="block" [disabled]="!portfolioForm.valid">
+    {{ actionButtonText }}
+  </ion-button>
+</form>

@@ -1,0 +1,76 @@
+.ngx-datatable.bonds {
+  box-shadow: none;
+  background: #eb9a22;
+  border: 1px solid #2f3646;
+  color: #000;
+  font-size: 11px; }
+  .ngx-datatable.bonds .datatable-header {
+    background: #cf881e;
+    color: #000; }
+    .ngx-datatable.bonds .datatable-header .datatable-header-cell {
+      text-align: left;
+      padding: 0.5rem 1.2rem;
+      font-weight: bold; }
+      .ngx-datatable.bonds .datatable-header .datatable-header-cell .datatable-header-cell-label {
+        line-height: 24px; }
+  .ngx-datatable.bonds .datatable-body {
+    background: #eb9a22;
+    height: 149px !important; }
+    .ngx-datatable.bonds .datatable-body .datatable-body-row {
+      border-top: 1px solid #2f3646; }
+      .ngx-datatable.bonds .datatable-body .datatable-body-row .datatable-body-cell {
+        text-align: left;
+        padding: 0.5rem 1.2rem;
+        vertical-align: top; }
+      .ngx-datatable.bonds .datatable-body .datatable-body-row:hover {
+        background: #5e6574;
+        transition-property: background;
+        transition-duration: 0.3s;
+        transition-timing-function: linear; }
+      .ngx-datatable.bonds .datatable-body .datatable-body-row:focus {
+        background-color: #232837; }
+      .ngx-datatable.bonds .datatable-body .datatable-body-row.active {
+        background-color: #1483ff;
+        color: #000; }
+  .ngx-datatable.bonds .datatable-footer {
+    background: #cf881e;
+    color: #fff;
+    margin-top: -1px; }
+    .ngx-datatable.bonds .datatable-footer .page-count {
+      line-height: 40px;
+      height: 40px;
+      padding: 0 1.2rem; }
+    .ngx-datatable.bonds .datatable-footer .datatable-pager {
+      margin: 0 10px;
+      vertical-align: top; }
+      .ngx-datatable.bonds .datatable-footer .datatable-pager ul li {
+        margin: 10px 0px; }
+        .ngx-datatable.bonds .datatable-footer .datatable-pager ul li:not(.disabled).active a,
+        .ngx-datatable.bonds .datatable-footer .datatable-pager ul li:not(.disabled):hover a {
+          background-color: #455066;
+          font-weight: bold; }
+      .ngx-datatable.bonds .datatable-footer .datatable-pager a {
+        height: 22px;
+        min-width: 24px;
+        line-height: 22px;
+        padding: 0;
+        border-radius: 3px;
+        margin: 0 3px;
+        text-align: center;
+        vertical-align: top;
+        text-decoration: none;
+        vertical-align: bottom;
+        color: #fff; }
+      .ngx-datatable.bonds .datatable-footer .datatable-pager .datatable-icon-left,
+      .ngx-datatable.bonds .datatable-footer .datatable-pager .datatable-icon-skip,
+      .ngx-datatable.bonds .datatable-footer .datatable-pager .datatable-icon-right,
+      .ngx-datatable.bonds .datatable-footer .datatable-pager .datatable-icon-prev {
+        font-size: 18px;
+        line-height: 27px;
+        padding: 0 3px; }
+  .ngx-datatable.bonds .datatable-summary-row .datatable-body-row {
+    background-color: #14171f; }
+    .ngx-datatable.bonds .datatable-summary-row .datatable-body-row:hover {
+      background-color: #14171f; }
+    .ngx-datatable.bonds .datatable-summary-row .datatable-body-row .datatable-body-cell {
+      font-weight: bold; }

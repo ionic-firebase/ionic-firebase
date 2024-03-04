@@ -1,0 +1,239 @@
+<form [formGroup]="propertyForm">
+  <ion-card>
+    <ion-card-header color="secondary"></ion-card-header>
+    <ion-card-content class="ion-padding" color="light" width="100%">
+      <ion-list>
+        <ion-item (click)="showPurchasePicker = !showPurchasePicker">
+          <ion-input value="{{formattedPurchaseDate}}" label="Purchase Date"></ion-input>
+        </ion-item>
+        <ion-datetime *ngIf="showPurchasePicker"
+          #purchase
+          [value]="datePurchaseValue"
+          size="cover"
+          presentation="date"
+          min="{{fromDate}}"
+          max="{{toDate}}"
+          (ionChange)="purchasedateChanged(purchase.value)"
+          showDefaultButtons="false">
+        </ion-datetime>
+
+        <ion-item>
+          <ion-input formControlName="name" type="text" placeholder="What's your property's reference?"
+          label="Property's reference?" [class.invalid]="!propertyForm.controls['name'].valid&& propertyForm.controls['name'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!propertyForm.controls['name'].valid &&
+          propertyForm.controls['name'].touched">
+          <ion-label>Please give the property a name or reference.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="initialcash" type="number" placeholder="£"
+          label="Initial cash balance" [class.invalid]="!propertyForm.controls['initialcash'].valid&& propertyForm.controls['initialcash'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!propertyForm.controls['initialcash'].valid &&
+          propertyForm.controls['initialcash'].touched">
+          <ion-label>Please enter the property account inital cash amount.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="purchasevalue" type="number" placeholder="£"
+          label="Purchase Value" [class.invalid]="!propertyForm.controls['purchasevalue'].valid&& propertyForm.controls['purchasevalue'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!propertyForm.controls['purchasevalue'].valid &&
+          propertyForm.controls['purchasevalue'].touched">
+          <ion-label>Please enter the purchase value.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="currentvalue" type="number" placeholder="£"
+          label="Current Value" [class.invalid]="!propertyForm.controls['currentvalue'].valid&& propertyForm.controls['currentvalue'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!propertyForm.controls['currentvalue'].valid &&
+          propertyForm.controls['currentvalue'].touched">
+          <ion-label>Please enter the current value.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="budgetmortgage" type="number" placeholder="£"
+          label="Annual Mortgage Budget" [class.invalid]="!propertyForm.controls['budgetmortgage'].valid&& propertyForm.controls['budgetmortgage'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!propertyForm.controls['budgetmortgage'].valid &&
+          propertyForm.controls['budgetmortgage'].touched">
+          <ion-label>Please enter your annual mortgage budget.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="budgetmanagement" type="number" placeholder="£"
+          label="Annual Service Management Budget" [class.invalid]="!propertyForm.controls['budgetmanagement'].valid&& propertyForm.controls['budgetmanagement'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!propertyForm.controls['budgetmanagement'].valid &&
+          propertyForm.controls['budgetmanagement'].touched">
+          <ion-label>Please enter your annual service management budget.</ion-label>
+        </ion-item>
+        
+        <ion-item>
+          <ion-input formControlName="budgetrates" type="number" placeholder="£"
+          label="Annual Rates Budget" [class.invalid]="!propertyForm.controls['budgetrates'].valid&& propertyForm.controls['budgetrates'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!propertyForm.controls['budgetrates'].valid &&
+          propertyForm.controls['budgetrates'].touched">
+          <ion-label>Please enter your annual rates budget.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="budgetinsurance" type="number" placeholder="£"
+          label="Annual Insurance Budget" [class.invalid]="!propertyForm.controls['budgetinsurance'].valid&& propertyForm.controls['budgetinsurance'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!propertyForm.controls['budgetinsurance'].valid &&
+          propertyForm.controls['budgetinsurance'].touched">
+          <ion-label>Please enter your annual insurance budget.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="budgetmaintenance" type="number" placeholder="£"
+          label="Annual Maintenance Budget" [class.invalid]="!propertyForm.controls['budgetmaintenance'].valid&& propertyForm.controls['budgetmaintenance'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!propertyForm.controls['budgetmaintenance'].valid &&
+          propertyForm.controls['budgetmaintenance'].touched">
+          <ion-label>Please enter your annual maintenance budget.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="budgetutilities" type="number" placeholder="£"
+          label="Annual Utilities Budget" [class.invalid]="!propertyForm.controls['budgetutilities'].valid&& propertyForm.controls['budgetutilities'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!propertyForm.controls['budgetutilities'].valid &&
+          propertyForm.controls['budgetutilities'].touched">
+          <ion-label>Please enter your annual utilities budget.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="budgetothercosts" type="number" placeholder="£"
+          label="Any Other Annual Cost Budget" [class.invalid]="!propertyForm.controls['budgetothercosts'].valid&& propertyForm.controls['budgetothercosts'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!propertyForm.controls['budgetothercosts'].valid &&
+                  propertyForm.controls['budgetothercosts'].touched">
+          <ion-label>Any other annual costs to budget for.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-select formControlName="taxable" interface="popover"
+          label="Income Taxable?" [class.invalid]="!propertyForm.controls['taxable'].valid&& propertyForm.controls['taxable'].touched">
+            <ion-select-option value="No">No</ion-select-option>
+            <ion-select-option value="Yes">Yes</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!propertyForm.controls['taxable'].valid &&
+          propertyForm.controls['taxable'].touched">
+          <ion-label>Please select whether property income is taxable or not.</ion-label>
+        </ion-item>
+
+      <ion-item>
+        <ion-select formControlName="forecast" interface="popover"
+        label="Include in forecast?" [class.invalid]="!propertyForm.controls['forecast'].valid&& propertyForm.controls['forecast'].touched">
+          <ion-select-option [value]="false">No</ion-select-option>
+          <ion-select-option [value]="true">Yes</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="!propertyForm.controls['forecast'].valid &&
+        propertyForm.controls['forecast'].touched">
+        <ion-label>Include in forecast calculations?</ion-label>
+      </ion-item>
+
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header color="secondary">Tenancy Contract</ion-card-header>
+    <ion-card-content class="ion-padding" color="light" width="100%">
+      <ion-list>
+        <ion-item>
+          <ion-input formControlName="budgetrentalincome" type="number" 
+          label="Rental Income Budget" placeholder="£"
+            [class.invalid]="!propertyForm.controls['budgetrentalincome'].valid&& propertyForm.controls['budgetrentalincome'].touched">
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-select formControlName="budgetrentalfrequency" interface="popover"
+          label="Payment Frequency" [class.invalid]="!propertyForm.controls['budgetrentalfrequency'].valid&& propertyForm.controls['budgetrentalfrequency'].touched">
+            <ion-select-option value="Monthly">Monthly</ion-select-option>
+            <ion-select-option value="Quarterly">Quarterly</ion-select-option>
+            <ion-select-option value="Annually">Annually</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="budgetotherincome" type="number" placeholder="£"
+          label="Other Income Budget" [class.invalid]="!propertyForm.controls['budgetotherincome'].valid&& propertyForm.controls['budgetotherincome'].touched">
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="tenantname" type="text" 
+          label="Tenants Name" placeholder="What's your tenant's name?">
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="tenantphone" type="text" 
+          label="Tenants Phone" placeholder="What's your tenant's phone?">
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="tenantemail" type="text" 
+          label="Tenants Email" placeholder="What's your tenant's email?">
+          </ion-input>
+        </ion-item>
+
+        <ion-item (click)="showContractPicker = !showContractPicker">
+          <ion-input value="{{formattedContractDate}}" label="Contract Date"></ion-input>
+        </ion-item>
+        <ion-datetime *ngIf="showContractPicker"
+          #contract
+          [value]="dateContractValue"
+          size="cover"
+          presentation="date"
+          min="{{fromDate}}"
+          max="{{toDate}}"
+          (ionChange)="contractdateChanged(contract.value)"
+          showDefaultButtons="false">
+        </ion-datetime>
+
+        <ion-item (click)="showRenewalPicker = !showRenewalPicker">
+          <ion-input value="{{formattedRenewalDate}}" label="Renewal Date"></ion-input>
+        </ion-item>
+        <ion-datetime *ngIf="showRenewalPicker"
+          #renewal
+          [value]="dateRenewalValue"
+          size="cover"
+          presentation="date"
+          min="{{fromDate}}"
+          max="{{toDate}}"
+          (ionChange)="renewaldateChanged(renewal.value)"
+          showDefaultButtons="false">
+        </ion-datetime>
+        
+        <ion-item>
+          <ion-textarea formControlName="notes" rows="6" cols="20" label="Notes">
+          </ion-textarea>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-button (click)="submitCredentials(propertyForm)" expand="block" [disabled]="!propertyForm.valid">
+    {{ actionButtonText }}
+  </ion-button>
+</form>

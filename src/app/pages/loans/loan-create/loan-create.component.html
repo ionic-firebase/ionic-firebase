@@ -1,0 +1,12 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/loans/loan-list"></ion-back-button>
+    </ion-buttons>
+    <ion-title ion-text-center>New Loans Account</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="light">
+  <app-loan-form  #loanForm (formSubmitted)="createLoan($event)" [actionButtonText]="'Create Loan'"></app-loan-form>
+</ion-content>

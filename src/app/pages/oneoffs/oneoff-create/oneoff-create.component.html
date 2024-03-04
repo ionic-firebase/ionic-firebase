@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/oneoffs/oneoff-list"></ion-back-button>
+      </ion-buttons>
+      <ion-title ion-text-center>New One Off Item</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="light">
+  <app-oneoff-form #oneoffForm (formSubmitted)="createOneoff($event)" [actionButtonText]="'Create One Off Event'">
+  </app-oneoff-form>
+</ion-content>

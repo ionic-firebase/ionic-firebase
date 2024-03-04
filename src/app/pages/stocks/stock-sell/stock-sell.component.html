@@ -1,0 +1,12 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/stocks/stock-list/{{portfolioId}}"></ion-back-button>
+    </ion-buttons>
+    <ion-title ion-text-center>Sell Stock in {{portfolio.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="light">
+  <app-stock-form #stockForm (formSubmitted)="sellStock($event)" [actionButtonText]="'Sell Stock'"></app-stock-form>
+</ion-content>

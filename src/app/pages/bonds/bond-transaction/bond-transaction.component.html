@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/bonds/bond-list"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add Transaction</ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content class="ion-padding" color="light">
+  <app-transaction-form  #transactionForm (formSubmitted)="createBondTransaction($event)" [actionButtonText]="'Create Transaction'"
+  [actionDropdowns]=typeDropdowns></app-transaction-form>
+</ion-content>
+

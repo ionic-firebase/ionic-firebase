@@ -1,0 +1,134 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/summary"></ion-back-button>
+    </ion-buttons>
+    <ion-title ion-text-center>40 Year Projection</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="light">
+  <ion-card>
+    <ion-card-content class="ion-padding" color="light">
+      <ngx-datatable class="forecast" 
+      [rows]="rowList" 
+      [rowHeight]="30" 
+      [columns]="columns" 
+      [columnMode]="'standard'"
+      [sortType]="'multi'" 
+      [headerHeight]="30" 
+      [footerHeight]="30" 
+      [scrollbarV]="true" 
+      [scrollbarH]="true">
+
+      <ngx-datatable-column name="Year" [sortable]="true" [width]="90">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.year}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Budget" [sortable]="false" [width]="100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.budget | currency:"GBP"}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Savings" [sortable]="false" [width]="100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.savingIncome | currency:"GBP"}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Salaries" [sortable]="false" [width]="100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.salaries | currency:"GBP"}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Dividends" [sortable]="false" [width]="100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.dividends | currency:"GBP"}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Property" [sortable]="false" [width]="100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.propertiesIncome | currency:"GBP"}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Pensions" [sortable]="false" [width]="100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.pensionsIncome | currency:"GBP"}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Loans" [sortable]="false" [width]="100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.loansIncome | currency:"GBP"}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="One Offs" [sortable]="false" [width]="100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.oneoffs | currency:"GBP"}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Income" [sortable]="false" [width]="100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.income | currency:"GBP"}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Change" [sortable]="false" [width]="100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.change | currency:"GBP"}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Savings" [sortable]="false" [width]="100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.savings | currency:"GBP"}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Trading" [sortable]="false" [width]="100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.trading | currency:"GBP"}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Bonds" [sortable]="false" [width]="100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.bonds | currency:"GBP"}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="SIPPS" [sortable]="false" [width]="100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.sipps | currency:"GBP"}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="ISAs" [sortable]="false" [width]="100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.isas | currency:"GBP"}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Property" [sortable]="false" [width]="100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.property | currency:"GBP"}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Assets" [sortable]="false" [width]="100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.assets | currency:"GBP"}}
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

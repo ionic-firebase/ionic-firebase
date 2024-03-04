@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+    <ion-title ion-text-center>Create your account</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="light">
+  <ion-card>
+    <ion-card-content>
+      <app-auth-form #signupForm (formSubmitted)="signupUser($event)" [actionButtonText]="'Create Account'"></app-auth-form>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-button expand="block" routerLink="/login">
+        I already have an account
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

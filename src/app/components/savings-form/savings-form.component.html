@@ -1,0 +1,153 @@
+<form [formGroup]="savingsForm">
+  <ion-card>
+    <ion-card-header color="secondary"></ion-card-header>
+    <ion-card-content class="ion-padding" color="light" width="100%">
+      <ion-list>
+        <ion-item (click)="showPicker = !showPicker">
+          <ion-input value="{{formattedDate}}" label="Savings Creation Date"></ion-input>
+        </ion-item>
+        <ion-datetime *ngIf="showPicker"
+          #datetime
+          [value]="dateValue"
+          size="cover"
+          presentation="date"
+          min="{{fromDate}}"
+          max="{{toDate}}"
+          (ionChange)="dateChanged(datetime.value)"
+          showDefaultButtons="false">
+        </ion-datetime>
+
+        <ion-item>
+          <ion-input formControlName="name" type="text" placeholder="Account name?"
+          label="Account Name" [class.invalid]="!savingsForm.controls['name'].valid&& savingsForm.controls['name'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!savingsForm.controls['name'].valid &&
+          savingsForm.controls['name'].touched">
+          <ion-label>Please enter account name.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="number" type="text" placeholder="Account number?"
+          label="Account Number" [class.invalid]="!savingsForm.controls['number'].valid&& savingsForm.controls['number'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!savingsForm.controls['number'].valid &&
+          savingsForm.controls['number'].touched">
+          <ion-label>Please enter account number.</ion-label>
+        </ion-item>
+        
+        <ion-item>
+          <ion-input formControlName="onlineid" type="text" placeholder="Online ID?"
+          label="Online ID" [class.invalid]="!savingsForm.controls['onlineid'].valid&& savingsForm.controls['onlineid'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!savingsForm.controls['onlineid'].valid &&
+          savingsForm.controls['onlineid'].touched">
+          <ion-label>Please enter online ID.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="initialcash" type="number" placeholder="£"
+          label="Initial Balance" [class.invalid]="!savingsForm.controls['initialcash'].valid&& savingsForm.controls['initialcash'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!savingsForm.controls['initialcash'].valid &&
+          savingsForm.controls['initialcash'].touched">
+          <ion-label>Please enter initial cash balance.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="interest" type="number" placeholder="£"
+          label="Interest Payable" [class.invalid]="!savingsForm.controls['interest'].valid&& savingsForm.controls['interest'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!savingsForm.controls['interest'].valid &&
+          savingsForm.controls['interest'].touched">
+          <ion-label>Please enter interest amount paid.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-select formControlName="frequency" interface="popover"
+          label="Interest Paid Every" [class.invalid]="!savingsForm.controls['frequency'].valid&& savingsForm.controls['frequency'].touched">
+            <ion-select-option value="Weekly">Weekly</ion-select-option>
+            <ion-select-option value="Monthly">Monthly</ion-select-option>
+            <ion-select-option value="Quarterly">Quarterly</ion-select-option>
+            <ion-select-option value="Annually">Annually</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!savingsForm.controls['frequency'].valid &&
+          savingsForm.controls['frequency'].touched">
+          <ion-label>Please select frequency of interest paid.</ion-label>
+        </ion-item> 
+
+        <ion-item>
+          <ion-select formControlName="taxable" interface="popover"
+          label="Taxable?" [class.invalid]="!savingsForm.controls['taxable'].valid&& savingsForm.controls['taxable'].touched">
+            <ion-select-option value="No">No</ion-select-option>
+            <ion-select-option value="Yes">Yes</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!savingsForm.controls['taxable'].valid &&
+                    savingsForm.controls['taxable'].touched">
+          <ion-label>Check whether taxable or not?</ion-label>
+        </ion-item>
+
+      <ion-item>
+        <ion-select formControlName="forecast" interface="popover"
+        label="Include in forecast?" [class.invalid]="!savingsForm.controls['forecast'].valid&& savingsForm.controls['forecast'].touched">
+          <ion-select-option [value]="false">No</ion-select-option>
+          <ion-select-option [value]="true">Yes</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="!savingsForm.controls['forecast'].valid &&
+                    savingsForm.controls['forecast'].touched">
+        <ion-label>Include in forecast calculations?</ion-label>
+      </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="notes" type="text" placeholder=""
+          label="Notes" [class.invalid]="!savingsForm.controls['notes'].valid&& savingsForm.controls['notes'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!savingsForm.controls['notes'].valid &&
+          savingsForm.controls['notes'].touched">
+          <ion-label>Enter any notes here.</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header color="secondary">Security Hints</ion-card-header>
+    <ion-card-content class="ion-padding" color="light" width="100%">
+      <ion-list>
+        <ion-item>
+          <ion-input formControlName="passwordhint" type="text" 
+          label="Password Hint (not your password!)" placeholder="Think of a password hint?">
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="memorableplace" type="text" 
+          label="Memorable Place Hint" placeholder="Memorable place hint?">
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="memorablename" type="text" 
+          label="Memorable Name Hint" placeholder="Memorable name hint?">
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="memorabledate" type="text" 
+          label="Memorable Date Hint" placeholder="Memorable date hint?">
+          </ion-input>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-button (click)="submitCredentials(savingsForm)" expand="block" [disabled]="!savingsForm.valid">
+    {{ actionButtonText }}
+  </ion-button>
+</form>

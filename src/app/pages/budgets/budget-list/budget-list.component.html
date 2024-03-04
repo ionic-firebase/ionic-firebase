@@ -1,0 +1,133 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons shape="round" size="small" slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Budgets</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="light">
+  <div style="vertical-align: top">
+  <swiper-container>
+    <swiper-slide>
+      <ion-card>
+        <ion-card-header color="secondary">
+          Summary
+        </ion-card-header>
+        <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-label>
+              Mandatory: <strong>{{budgetMandatory | currency:"GBP"}}</strong><br />
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              Ongoing: <strong>{{budgetOngoing | currency:"GBP"}}</strong><br />
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              Luxury: <strong>{{budgetLuxury | currency:"GBP"}}</strong><br />
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              Total: <strong>{{budgetTotal | currency:"GBP"}}</strong><br />
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+    <swiper-slide>
+      <ion-card>
+        <ion-card-header color="secondary">
+          Mandatory
+        </ion-card-header>
+        <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-button color="warning" shape="round" size="small" slot="end" (click)="addBudget('Mandatory')">
+              <ion-icon color="light" slot="icon-only" name="add-circle"></ion-icon>
+            </ion-button>
+          </ion-item>
+          <ion-item *ngFor="let budget of budgetMandatoryList">
+            <ion-button  color="warning" shape="round" size="small" slot="end" (click)="openMenu(budget.id)">
+              <ion-icon color="light" slot="icon-only" name="menu"></ion-icon>
+            </ion-button>
+            <ion-label>
+              <h3><strong>{{budget.description}}</strong></h3>
+              Amount: <strong>{{budget.amount | currency:"GBP"}}</strong><br />
+              Frequency: <strong>{{budget.frequency}}</strong><br />
+              Annual Cost: <strong>{{budget.annual | currency:"GBP"}}</strong><br />
+              Review Date: <strong>{{budget.review | date}}</strong><br />
+              Notes: <strong>{{budget.notes}}</strong><br />
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+    <swiper-slide>
+      <ion-card>
+        <ion-card-header color="secondary">
+          Other
+        </ion-card-header>
+        <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-button color="warning" shape="round" size="small" slot="end" (click)="addBudget('Ongoing')">
+              <ion-icon color="light" slot="icon-only" name="add-circle"></ion-icon>
+            </ion-button>
+          </ion-item>
+          <ion-item *ngFor="let budget of budgetOngoingList">
+            <ion-button color="warning" shape="round" size="small" slot="end" (click)="openMenu(budget.id)">
+              <ion-icon color="light" slot="icon-only" name="menu"></ion-icon>
+            </ion-button>
+            <ion-label>
+              <h3><strong>{{budget.description}}</strong></h3>
+              Amount: <strong>{{budget.amount | currency:"GBP"}}</strong><br />
+              Frequency: <strong>{{budget.frequency}}</strong><br />
+              Annual Cost: <strong>{{budget.annual | currency:"GBP"}}</strong><br />
+              Review Date: <strong>{{budget.review | date}}</strong><br />
+              Notes: <strong>{{budget.notes}}</strong><br />
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+    <swiper-slide>
+      <ion-card>
+        <ion-card-header color="secondary">
+          Luxury
+        </ion-card-header>
+        <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-button color="warning" shape="round" size="small" slot="end" (click)="addBudget('Luxury')">
+              <ion-icon color="light" slot="icon-only" name="add-circle"></ion-icon>
+            </ion-button>
+          </ion-item>
+          <ion-item *ngFor="let budget of budgetLuxuryList">
+            <ion-button color="warning" shape="round" size="small" slot="end" (click)="openMenu(budget.id)">
+              <ion-icon color="light" slot="icon-only" name="menu"></ion-icon>
+            </ion-button>
+            <ion-label>
+              <h3><strong>{{budget.description}}</strong></h3>
+              Amount: <strong>{{budget.amount | currency:"GBP"}}</strong><br />
+              Frequency: <strong>{{budget.frequency}}</strong><br />
+              Annual Cost: <strong>{{budget.annual | currency:"GBP"}}</strong><br />
+              Review Date: <strong>{{budget.review | date}}</strong><br />
+              Notes: <strong>{{budget.notes}}</strong><br />
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+  </swiper-container>
+  </div>
+</ion-content>

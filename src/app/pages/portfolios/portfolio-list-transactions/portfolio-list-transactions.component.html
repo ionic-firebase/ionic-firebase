@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/portfolios/portfolio-list"></ion-back-button>
+    </ion-buttons>
+    <ion-button shape="round" size="small" slot="end" (click)="createPortfolioTransaction()">
+      <ion-icon color="light" slot="icon-only" name="add-circle"></ion-icon>
+    </ion-button>
+    <ion-title ion-text-center>{{portfolioName}} Transactions</ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content class="ion-padding" color="light">
+  <div style="vertical-align: top">
+  <ion-card>
+    <ion-card-content class="ion-padding" color="light">
+      <ngx-datatable
+      class="dark"
+      [rows]="rows"
+      [rowHeight]="50"
+      [columns]="columns"
+      [columnMode]="'standard'"
+      [sortType]="'multi'"
+      [headerHeight]="40"
+      [footerHeight]="40"
+      [scrollbarV]="true"
+      [scrollbarH]="true">
+
+      <ngx-datatable-column name="Date" [sortable]="true" [width]="90">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.date | date}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Type" [sortable]="false" [width]="90">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.type}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Description" [sortable]="false" [width]="200">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.description}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Amount" [sortable]="false" [width]="100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.cashamount | currency:"GBP"}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Balance" [sortable]="false" [width]="100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.balance | currency:"GBP"}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Action" [sortable]="false" [width]="70">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <button *ngIf="row.ismode" class="btn btn-sm btn-danger" (click)="openMenu(row.id, row.cashamount, row.type)">
+            <ion-icon color="secondary" slot="icon-only" name="menu"></ion-icon>
+          </button>
+        </ng-template>
+      </ngx-datatable-column>
+      
+      </ngx-datatable>
+    </ion-card-content>
+  </ion-card>
+  </div>
+</ion-content>

@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/portfolios/portfolio-list"></ion-back-button>
+    </ion-buttons>
+    <ion-title ion-text-center>{{portfolioName}}:&nbsp;Trust List</ion-title>
+    <ion-button shape="round" size="small" slot="end" aria-label="Add Trust" (click)="addTrust()">
+      <ion-icon color="light" slot="icon-only" name="add-circle" aria-hidden="true"></ion-icon>
+    </ion-button>
+    <ion-button shape="round" size="small" slot="end" aria-label="Buy Trust" (click)="buyTrust()">
+      <ion-icon color="light" slot="icon-only" name="logo-usd" aria-hidden="true"></ion-icon>
+    </ion-button>    
+  </ion-toolbar>
+</ion-header>
+ 
+
+<ion-content class="ion-padding" color="light">
+  <div style="vertical-align: top">
+  <ion-card *ngFor="let trust of trusts$ | async">
+    <ion-card-header color="secondary">{{trust.name}}</ion-card-header>
+    <ion-card-content class="ion-padding" color="light">
+      <ion-list>
+        <ion-item>
+          <ion-button color="warning" shape="round" size="small" slot="end" (click)="openMenu(trust?.id)">
+            <ion-icon color="light" slot="icon-only" name="menu"></ion-icon>
+          </ion-button>
+          <ion-label>
+            Ticker: <strong>{{trust.ticker}}</strong><br />
+            Purchase Date: <strong>{{trust.date | date}}</strong><br />
+            Bought: <strong>{{trust.quantity}} &#64; {{ trust.price}}p</strong><br />
+            Total Cost: <strong>{{((trust.price * trust.quantity / 100) + 
+              trust.transactioncharge + trust.tax + trust.othercharges) | currency:"GBP"}}</strong><br /><br />
+            Current Value: <strong>{{trust.currentprice * trust.quantity / 100 | currency:"GBP"}}
+              ({{trust.quantity}} &#64; {{trust.currentprice}}p)</strong><br />
+            Gain: <strong>{{((trust.currentprice * trust.quantity / 100) - (trust.price * trust.quantity / 100) -
+              trust.transactioncharge - trust.tax - trust.othercharges) | currency:"GBP"}}
+              ({{((trust.currentprice * trust.quantity / 100) - (trust.price * trust.quantity / 100) -
+                trust.transactioncharge - trust.tax - trust.othercharges) / ((trust.price * trust.quantity / 100) +
+                trust.transactioncharge + trust.tax + trust.othercharges) | percent:"1.2"}})</strong><br /><br />
+            Expected Yield: <strong>{{trust.trustyield / 100 | percent:"1.2"}}</strong><br />
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      <ion-list width="100%">
+        <ion-item>         
+          Current Price:&nbsp;<strong>{{trust.currentprice}}p</strong>
+        </ion-item>
+      </ion-list>
+      <ion-list>
+        <ion-item style="display: flex; align-items: center">
+          <ion-input [(ngModel)]="trust.currentprice" type="number" inputmode="numeric" 
+          label="New Price:" placeholder="p" class="ion-padding"></ion-input>
+          <ion-button shape="round" size="small" color="warning" expand="block"
+            (click)="updateTrustPrice(trust.id, trust.ticker, trust.currentprice)">
+            <b>Update</b>
+          </ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header color="secondary">Summary</ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>
+            Trusts Cost: <strong>{{trustBuyTotal | currency:"GBP"}}</strong><br />
+            Trusts Value: <strong>{{trustCurrentTotal | currency:"GBP"}}</strong><br />
+            Trusts P&L: <strong>{{(trustCurrentTotal - trustBuyTotal) | currency:"GBP"}}</strong><br />
+            Gain / Loss: <strong>{{(trustCurrentTotal - trustBuyTotal) / trustBuyTotal | percent:"1.2"}}</strong><br />
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  </div>
+</ion-content>

@@ -1,0 +1,150 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons shape="round" size="small" slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+    <ion-button shape="round" size="small" slot="end" (click)="createPortfolio()">
+      <ion-icon color="light" slot="icon-only" name="add-circle"></ion-icon>
+    </ion-button>
+    <ion-title>Portfolios</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding" color="light">
+  <div style="vertical-align: top">
+  <swiper-container *ngFor="let portfolio of portfolioList">
+    <swiper-slide>
+      <ion-card>
+        <ion-card-header color="secondary">{{portfolio.name}}</ion-card-header>
+        <ion-card-content class="ion-padding" color="light" width="100%">
+          <ion-list width="100%">
+            <ion-item>
+              <ion-button color="warning" shape="round" size="small" slot="end" (click)="openMenu(portfolio?.id)">
+                <ion-icon color="light" slot="icon-only" name="menu"></ion-icon>
+              </ion-button>
+              <ion-label>
+                Investment: <strong>{{(portfolio.initialcash + portfolio.initialstocksbalance + portfolio.initialtrustsbalance) | currency:"GBP"}}</strong><br><br>
+                Value: <strong>{{(portfolio.balance + portfolio.stocksbalance + portfolio.trustsbalance) | currency:"GBP"}}</strong><br><br>
+                Gain / Loss: <strong>{{(portfolio.balance + portfolio.stocksbalance + portfolio.trustsbalance -
+                  portfolio.initialcash - portfolio.initialstocksbalance - portfolio.initialtrustsbalance) | currency:"GBP"}}</strong><br><br>
+                Gain%: <strong>{{((portfolio.balance + portfolio.stocksbalance + portfolio.trustsbalance -
+                   portfolio.initialcash - portfolio.initialstocksbalance - portfolio.initialtrustsbalance) / (portfolio.initialcash + portfolio.initialstocksbalance + portfolio.initialtrustsbalance)) | percent:"1.2"}}</strong><br><br>
+                Notes: <strong>{{portfolio.notes}}</strong><br><br>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+    <swiper-slide>
+      <ion-card>
+        <ion-card-header color="secondary">{{portfolio.name}} ({{portfolio.id}}) Balances</ion-card-header>
+        <ion-card-content class="ion-padding" color="light" width="100%">
+          <ion-list width="100%">
+            <ion-item>
+              <ion-button color="warning" shape="round" size="small" slot="end" (click)="openMenu(portfolio?.id)">
+                <ion-icon color="light" slot="icon-only" name="menu"></ion-icon>
+              </ion-button>
+              <ion-label>
+                Cash: <strong>{{portfolio.balance | currency:"GBP"}}
+                  ({{portfolio.balance / (portfolio.balance + portfolio.stocksbalance + portfolio.trustsbalance) | percent:"1.2"}})</strong><br><br>
+                Stocks: <strong>{{portfolio.stocksbalance | currency:"GBP"}} 
+                ({{portfolio.stocksbalance / (portfolio.balance + portfolio.stocksbalance + portfolio.trustsbalance) | percent:"1.2"}})</strong><br><br>
+                Trusts: <strong>{{portfolio.trustsbalance | currency:"GBP"}}
+                ({{portfolio.trustsbalance / (portfolio.balance + portfolio.stocksbalance + portfolio.trustsbalance) | percent:"1.2"}})</strong><br><br>
+                  <br><br><br><br><br><br>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+    <swiper-slide>
+      <ion-card>
+        <ion-card-header color="secondary">{{portfolio.name}} Settings</ion-card-header>
+        <ion-card-content class="ion-padding" color="light" width="100%">
+          <ion-list width="100%">
+            <ion-item>
+              <ion-button color="warning" shape="round" size="small" slot="end" (click)="openMenu(portfolio.id)">
+                <ion-icon color="light" slot="icon-only" name="menu"></ion-icon>
+              </ion-button>
+              <ion-label>
+                Created: <strong>{{portfolio.date | date}}</strong><br><br>
+                Account No: <strong>{{portfolio.number}}</strong><br><br>
+                Online ID: <strong>{{portfolio.onlineid}}</strong><br><br>
+                Password Hint: <strong>{{portfolio.passwordhint}}</strong><br><br>
+                Default Charge: <strong>{{portfolio.charge | currency:"GBP"}}</strong><br><br>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+  </swiper-container>
+  <swiper-container>
+    <swiper-slide>
+      <ion-card>
+        <ion-card-header color="secondary">Totals</ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <ion-item>
+              <ion-label>
+                Cash: <strong>{{portfolioTotalCashBalance | currency:"GBP"}} 
+                ({{portfolioTotalCashBalance / (portfolioTotalCashBalance + portfolioTotalStockBalance + portfolioTotalTrustBalance) | percent:"1.2"}})</strong>
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                Stocks: <strong>{{portfolioTotalStockBalance | currency:"GBP"}} 
+                ({{portfolioTotalStockBalance / (portfolioTotalCashBalance + portfolioTotalStockBalance + portfolioTotalTrustBalance) | percent:"1.2"}})</strong>
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                Trusts: <strong>{{portfolioTotalTrustBalance | currency:"GBP"}} 
+                ({{portfolioTotalTrustBalance / (portfolioTotalCashBalance + portfolioTotalStockBalance + portfolioTotalTrustBalance) | percent:"1.2"}})</strong>
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                Total: <strong>{{portfolioTotalCashBalance + portfolioTotalStockBalance + portfolioTotalTrustBalance | currency:"GBP"}}</strong> 
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+    <swiper-slide>
+      <ion-card>
+        <ion-card-header color="secondary">Tax Types</ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <ion-item>
+              <ion-label>
+                SIPPS: <strong>{{portfolioTotalSIPPBalance | currency:"GBP"}}
+                  ({{portfolioTotalSIPPBalance / (portfolioTotalSIPPBalance + portfolioTotalISAsBalance + portfolioTotalTaxableBalance) | percent:"1.2"}})</strong>
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                ISAs: <strong>{{portfolioTotalISAsBalance | currency:"GBP"}}
+                  ({{portfolioTotalISAsBalance / (portfolioTotalSIPPBalance + portfolioTotalISAsBalance + portfolioTotalTaxableBalance) | percent:"1.2"}})</strong>
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                Taxable: <strong>{{portfolioTotalTaxableBalance | currency:"GBP"}}
+                  ({{portfolioTotalTaxableBalance / (portfolioTotalSIPPBalance + portfolioTotalISAsBalance + portfolioTotalTaxableBalance) | percent:"1.2"}})</strong>
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                Total: <strong>{{portfolioTotalSIPPBalance + portfolioTotalISAsBalance + portfolioTotalTaxableBalance | currency:"GBP"}}</strong> 
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+  </swiper-container>
+  </div>
+</ion-content>

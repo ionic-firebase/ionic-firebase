@@ -1,0 +1,115 @@
+<form [formGroup]="loanForm">
+  <ion-card>
+    <ion-card-header color="secondary"></ion-card-header>
+    <ion-card-content class="ion-padding" color="light" width="100%">
+      <ion-list>
+        <ion-item (click)="showPicker = !showPicker">
+          <ion-input value="{{formattedDate}}" label="Loan Creation Date" ></ion-input>
+        </ion-item>
+        <ion-datetime *ngIf="showPicker"
+          #datetime
+          [value]="dateValue"
+          size="cover"
+          presentation="date"
+          min="{{fromDate}}"
+          max="{{toDate}}"
+          (ionChange)="dateChanged(datetime.value)"
+          showDefaultButtons="false">
+        </ion-datetime>
+
+        <ion-item>
+          <ion-input formControlName="name" type="text" placeholder="What's your loan's name?"
+          label="Loan Name" [class.invalid]="!loanForm.controls['name'].valid&& loanForm.controls['name'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!loanForm.controls['name'].valid &&
+            loanForm.controls['name'].touched">
+          <ion-label>Please enter a loan name.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="number" type="text" placeholder="What's your loan's account number?"
+          label="Account Number" [class.invalid]="!loanForm.controls['number'].valid&& loanForm.controls['number'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!loanForm.controls['number'].valid &&
+            loanForm.controls['number'].touched">
+          <ion-label>Please enter an account number greater than 6 digits long.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="initialloan" type="number" placeholder="£"
+          label="Initial Loan" [class.invalid]="!loanForm.controls['initialloan'].valid&& loanForm.controls['initialloan'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!loanForm.controls['initialloan'].valid &&
+            loanForm.controls['initialloan'].touched">
+          <ion-label>You must provide an initial loan value.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="paymentamount" type="number" placeholder="£"
+          label="Payment Amount" [class.invalid]="!loanForm.controls['paymentamount'].valid&& loanForm.controls['paymentamount'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!loanForm.controls['paymentamount'].valid &&
+            loanForm.controls['paymentamount'].touched">
+          <ion-label>You must provide the regular payment amount.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-select formControlName="frequency" interface="popover" 
+          label="Payment Frequency" [class.invalid]="!loanForm.controls['frequency'].valid&& loanForm.controls['frequency'].touched">
+            <ion-select-option value="Weekly">Weekly</ion-select-option>
+            <ion-select-option value="Monthly">Monthly</ion-select-option>
+            <ion-select-option value="Quarterly">Quarterly</ion-select-option>
+            <ion-select-option value="Annually">Annually</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!loanForm.controls['frequency'].valid &&
+          loanForm.controls['frequency'].touched">
+         <ion-label>Please select the frequency of payments.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-textarea formControlName="notes" rows="6" cols="20" label="Notes" >
+          </ion-textarea>
+        </ion-item>
+
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header color="secondary">Security Hints</ion-card-header>
+    <ion-card-content class="ion-padding" color="light" width="100%">
+
+      <ion-item>
+        <ion-input formControlName="passwordhint" type="text" 
+        label="Password Hint (not your password!)" placeholder="Think of a password hint?">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input formControlName="memorableplace" type="text" 
+        label="Memorable Place Hint" placeholder="Memorable place hint (if required)?">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input formControlName="memorablename" type="text" 
+        label="Memorable Name Hint" placeholder="Memorable name hint (if required)?">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input formControlName="memorabledate" type="text" 
+        label="Memorable Date Hint" placeholder="Memorable date hint (if required)?">
+        </ion-input>
+      </ion-item>
+
+    </ion-card-content>
+  </ion-card>
+  <ion-button (click)="submitCredentials(loanForm)" expand="block" [disabled]="!loanForm.valid">
+    {{ actionButtonText }}
+  </ion-button>
+</form>

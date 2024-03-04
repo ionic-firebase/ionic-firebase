@@ -1,0 +1,26 @@
+<ion-content class="ion-padding">
+  <app-auth-form
+    *ngIf="url"
+    (formSubmitted)="handleUserCredentials($event)"
+    [actionButtonText]="actionButtonText"
+    [isPasswordResetPage]="url === 'auth/reset'"
+  ></app-auth-form>
+
+  <ion-button
+    expand="block"
+    fill="clear"
+    routerLink="/auth/signup"
+    *ngIf="url && url !== 'auth/signup'"
+  >
+    Create a new account
+  </ion-button>
+
+  <ion-button
+    expand="block"
+    fill="clear"
+    routerLink="/auth/reset"
+    *ngIf="url && url !== 'auth/reset'"
+  >
+    I forgot my password :(
+  </ion-button>
+</ion-content>

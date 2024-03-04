@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons shape="round" size="small" slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+    <ion-button shape="round" size="small" slot="end" (click)="createBond()">
+      <ion-icon color="light" slot="icon-only" name="add-circle"></ion-icon>
+    </ion-button>
+    <ion-title ion-text-center>Fixed Interest Bonds</ion-title>
+  </ion-toolbar>
+</ion-header>
+   
+<ion-content class="ion-padding" color="light">
+  <div style="vertical-align: top">
+  <swiper-container *ngFor="let bond of bondList">
+    <swiper-slide>
+      <ion-card>
+        <ion-card-header color="secondary">{{bond?.name}}</ion-card-header>
+        <ion-card-content class="ion-padding" color="light" width="100%">
+          <ion-list>
+            <ion-item>
+              <ion-button color="warning" shape="round" size="small" slot="end" (click)="openMenu(bond?.id)">
+                <ion-icon color="light" slot="icon-only" name="menu"></ion-icon>
+              </ion-button>
+              <ion-label>
+                Initial Investment: <strong>{{bond?.initialcash | currency:"GBP"}}</strong><br><br>
+                Annual Interest Rate: <strong>{{bond?.interestrate / 100 | percent:"1.2"}}</strong><br><br>
+                Balance: <strong>{{bond?.balance | currency:"GBP"}}</strong><br><br>
+                Notes: <strong>{{bond?.notes}}</strong><br><br><br>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+    <swiper-slide>
+      <ion-card>
+        <ion-card-header color="secondary">{{bond?.name}} details</ion-card-header>
+        <ion-card-content class="ion-padding" color="light" width="100%">
+          <ion-list>
+            <ion-item>
+              <ion-button color="warning" shape="round" size="small" slot="end" (click)="openMenu(bond.id)">
+                <ion-icon color="light" slot="icon-only" name="menu"></ion-icon>
+              </ion-button>
+              <ion-label>
+                Creation Date: <strong>{{bond?.date | date}}</strong><br><br>
+                Account Number: <strong>{{bond?.number}}</strong><br><br>
+                Online ID: <strong>{{bond?.onlineid}}</strong><br><br>
+                Annual Interest: <strong>{{bond?.annualinterest  | currency:"GBP"}}</strong><br><br>
+                Investment Period: <strong>{{bond?.maturity}} years</strong><br>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+    <swiper-slide>
+      <ion-card>
+        <ion-card-header color="secondary">{{bond?.name}} security</ion-card-header>
+        <ion-card-content class="ion-padding" color="light" width="100%">
+          <ion-list>
+            <ion-item>
+              <ion-button color="warning" shape="round" size="small" slot="end" (click)="openMenu(bond.id)">
+                <ion-icon color="light" slot="icon-only" name="menu"></ion-icon>
+              </ion-button>
+              <ion-label>
+                Online ID: <strong>{{bond?.onlineid}}</strong><br><br>
+                Password Hint: <strong>{{bond?.passwordhint}}</strong><br><br>
+                Memorable Place: <strong>{{bond?.memorableplace}}</strong><br><br>
+                Memorable Name: <strong>{{bond?.memorablename}}</strong><br><br>
+                Memorable Date: <strong>{{bond?.memorabledate}}</strong>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+  </swiper-container>
+  <ion-card>
+    <ion-card-header color="secondary"> Bonds Summary</ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>
+            Total Bond Balances: <strong>{{bondTotal | currency:"GBP"}}</strong>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            Total Bond Incomes: <strong>{{bondIncome | currency:"GBP"}}</strong>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  </div>
+</ion-content>

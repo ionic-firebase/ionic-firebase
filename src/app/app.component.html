@@ -1,3 +1,86 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu menuId="main-menu" content-id="main">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle>
+          <ion-item routerLink = "/home">
+            <ion-icon color="warning" name="Home" slot="start"></ion-icon>
+            <ion-label>Home</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item routerLink = "/summary">
+            <ion-icon color="warning" name="stats-chart" slot="start"></ion-icon>
+            <ion-label>Summary</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item routerLink = "/budgets/budget-list">
+            <ion-icon color="warning" name="receipt" slot="start"></ion-icon>
+            <ion-label>Budgets</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item routerLink = '/portfolios/portfolio-list'>
+            <ion-icon color="warning" name="documents" slot="start"></ion-icon>
+            <ion-label>Portfolio</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item routerLink = "/bonds/bond-list">
+            <ion-icon color="warning" name="document-attach" slot="start"></ion-icon>
+            <ion-label>Bonds</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item routerLink = "/savings/saving-list">
+            <ion-icon color="warning" name="wallet" slot="start"></ion-icon>
+            <ion-label>Savings</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item routerLink = "/oneoffs/oneoff-list">
+            <ion-icon color="warning" name="car-sport" slot="start"></ion-icon>
+            <ion-label>Oneoffs</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item routerLink = "/property/property-list">
+            <ion-icon color="warning" name="home" slot="start"></ion-icon>
+            <ion-label>Property</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item routerLink = "/pensions/pension-list">
+            <ion-icon color="warning" name="duplicate" slot="start"></ion-icon>
+            <ion-label>Pensions</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item routerLink = "/salaries/salary-list">
+            <ion-icon color="warning" name="wallet" slot="start"></ion-icon>
+            <ion-label>Salaries</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item routerLink = "/loans/loan-list">
+            <ion-icon color="warning" name="briefcase" slot="start"></ion-icon>
+            <ion-label>Loans</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item routerLink = "/debts/debt-list">
+            <ion-icon color="warning" name="briefcase" slot="start"></ion-icon>
+            <ion-label>Debts</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>

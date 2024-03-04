@@ -1,0 +1,75 @@
+<form [formGroup]="oneoffForm">
+  <ion-card>
+    <ion-card-header color="secondary"></ion-card-header>
+    <ion-card-content class="ion-padding" color="light" width="100%">
+      <ion-list>
+        <ion-item (click)="showPicker = !showPicker">
+          <ion-input value="{{formattedDate}}" label="Event Date" ></ion-input>
+        </ion-item>
+        <ion-datetime *ngIf="showPicker"
+          #datetime
+          [value]="dateValue"
+          size="cover"
+          presentation="date"
+          min="{{fromDate}}"
+          max="{{toDate}}"
+          (ionChange)="dateChanged(datetime.value)"
+          showDefaultButtons="false">
+        </ion-datetime>
+
+        <ion-item>
+          <ion-label color="secondary" position="stacked">Description</ion-label>
+          <ion-input formControlName="description" type="text" placeholder="What's your oneoff description?"
+            label="Description" [class.invalid]="!oneoffForm.controls['name'].valid&& oneoffForm.controls['description'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!oneoffForm.controls['description'].valid &&
+            oneoffForm.controls['description'].touched">
+          <ion-label>Please enter a description.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="amount" type="number" placeholder="£"
+          label="Amount" [class.invalid]="!oneoffForm.controls['amount'].valid&& oneoffForm.controls['amount'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!oneoffForm.controls['amount'].valid &&
+        oneoffForm.controls['amount'].touched">
+          <ion-label>Please enter one off amount.</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-select formControlName="type" interface="popover"
+          label="Event Type" [class.invalid]="!oneoffForm.controls['type'].valid&& oneoffForm.controls['type'].touched">
+            <ion-select-option value="Inheritance">Inheritance</ion-select-option>
+            <ion-select-option value="Repayment">Loan Repayment</ion-select-option>
+            <ion-select-option value="Pension">Pension Lump Sum</ion-select-option>
+            <ion-select-option value="In">Other In</ion-select-option>
+            <ion-select-option value="Out">Other Out</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!oneoffForm.controls['type'].valid &&
+          oneoffForm.controls['type'].touched">
+          <ion-label>Enter type of event.</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-select formControlName="forecast" interface="popover"
+            label="Include in forecast?" [class.invalid]="!oneoffForm.controls['forecast'].valid&& oneoffForm.controls['forecast'].touched">
+            <ion-select-option [value]="false">No</ion-select-option>
+            <ion-select-option [value]="true">Yes</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!oneoffForm.controls['forecast'].valid &&
+      oneoffForm.controls['forecast'].touched">
+          <ion-label>Include in forecast calculations?</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-textarea formControlName="notes" rows="6" cols="20" label="Notes">
+          </ion-textarea>
+          </ion-item>
+      </ion-list>
+        </ion-card-content>
+    </ion-card>
+    <ion-button (click)="submitCredentials(oneoffForm)" expand="block" [disabled]="!oneoffForm.valid">
+        {{ actionButtonText }}
+    </ion-button>
+</form>

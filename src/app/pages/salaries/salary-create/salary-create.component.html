@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/salaries/salary-list"></ion-back-button>
+    </ion-buttons>
+    <ion-title ion-text-center>New Salary</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="light">
+  <app-salaries-form #salariesForm (formSubmitted)="createSalary($event)" [actionButtonText]="'Create Salary'"></app-salaries-form>
+</ion-content>
+ 

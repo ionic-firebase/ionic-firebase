@@ -1,0 +1,99 @@
+<form [formGroup]="salariesForm">
+    <ion-card>
+      <ion-card-header color="secondary"></ion-card-header>
+      <ion-card-content class="ion-padding" color="light" width="100%">
+        <ion-list>
+  
+          <ion-item (click)="showPicker = !showPicker">
+            <ion-input value="{{formattedDate}}" label="Employment Start Date"></ion-input>
+          </ion-item>
+          <ion-datetime *ngIf="showPicker"
+            #datetime
+            [value]="dateValue"
+            size="cover"
+            presentation="date"
+            min="{{fromDate}}"
+            max="{{toDate}}"
+            (ionChange)="dateChanged(datetime.value)"
+            showDefaultButtons="false">
+          </ion-datetime>
+  
+          <ion-item>
+            <ion-input formControlName="employer" type="text" placeholder="What's your employer's name?"
+              label="Employer Name" [class.invalid]="!salariesForm.controls['employer'].valid&& salariesForm.controls['employer'].touched">
+            </ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!salariesForm.controls['employer'].valid &&
+            salariesForm.controls['employer'].touched">
+            <ion-label>Please enter employer's name.</ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-input formControlName="grossincome" type="number" placeholder="£"
+            label="Gross Pay (before tax)" [class.invalid]="!salariesForm.controls['grossincome'].valid&& salariesForm.controls['grossincome'].touched">
+            </ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!salariesForm.controls['grossincome'].valid &&
+            salariesForm.controls['grossincome'].touched">
+            <ion-label>Please enter gross salaries.</ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-input formControlName="netincome" type="number" placeholder="£"
+            label="Net Pay (after tax)" [class.invalid]="!salariesForm.controls['netincome'].valid&& salariesForm.controls['netincome'].touched">
+            </ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!salariesForm.controls['netincome'].valid &&
+            salariesForm.controls['netincome'].touched">
+            <ion-label>Please enter net salaries.</ion-label>
+          </ion-item>      
+  
+          <ion-item>
+            <ion-select formControlName="frequency" interface="popover"
+            label="Payment Frequency" [class.invalid]="!salariesForm.controls['frequency'].valid&& salariesForm.controls['frequency'].touched">
+              <ion-select-option value="Weekly">Weekly</ion-select-option>
+              <ion-select-option value="Monthly">Monthly</ion-select-option>
+              <ion-select-option value="Quarterly">Quarterly</ion-select-option>
+              <ion-select-option value="Annually">Annually</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!salariesForm.controls['frequency'].valid &&
+                      salariesForm.controls['frequency'].touched">
+            <ion-label>Please select payment frequency.</ion-label>
+          </ion-item>      
+  
+          <ion-item>
+            <ion-select formControlName="taxable" interface="popover"
+            label="Salary Income Taxable?" [class.invalid]="!salariesForm.controls['taxable'].valid&& salariesForm.controls['taxable'].touched">
+              <ion-select-option value="No">No</ion-select-option>
+              <ion-select-option value="Yes">Yes</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!salariesForm.controls['taxable'].valid &&
+                      salariesForm.controls['taxable'].touched">
+            <ion-label>Check whether taxable or not?</ion-label>
+          </ion-item>
+  
+        <ion-item>
+          <ion-select formControlName="forecast" interface="popover"
+          label="Include in forecast?" [class.invalid]="!salariesForm.controls['forecast'].valid&& salariesForm.controls['forecast'].touched">
+            <ion-select-option [value]="false">No</ion-select-option>
+            <ion-select-option [value]="true">Yes</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!salariesForm.controls['forecast'].valid &&
+                salariesForm.controls['forecast'].touched">
+          <ion-label>Include in forecast calculations?</ion-label>
+        </ion-item>
+  
+          <ion-item>
+            <ion-textarea formControlName="notes" rows="6" cols="20" label="Notes" >
+            </ion-textarea>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+    <ion-button (click)="submitCredentials(salariesForm)" expand="block" [disabled]="!salariesForm.valid">
+      {{ actionButtonText }}
+    </ion-button>
+  </form>

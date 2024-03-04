@@ -1,0 +1,12 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/portfolios/portfolio-list"></ion-back-button>
+    </ion-buttons>
+    <ion-title ion-text-center>New Portfolio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="light">
+  <app-portfolio-form  #portfolioForm (formSubmitted)="createPortfolio($event)" [actionButtonText]="'Create Portfolio'"></app-portfolio-form>
+</ion-content>

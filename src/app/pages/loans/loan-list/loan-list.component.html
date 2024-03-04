@@ -1,0 +1,98 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons shape="round" size="small" slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+    <ion-button shape="round" size="small" slot="end" (click)="createLoan()">
+      <ion-icon color="light" slot="icon-only" name="add-circle"></ion-icon>
+    </ion-button>
+    <ion-title ion-text-center>Loan Accounts</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="light">
+  <div style="vertical-align: top">
+    <swiper-container *ngFor="let loan of loanList">
+      <swiper-slide>
+      <ion-card>
+        <ion-card-header color="secondary"></ion-card-header>
+        <ion-card-content class="ion-padding" color="light">
+          <ion-list>
+            <ion-item>
+              <ion-button color="warning" shape="round" size="small" slot="end" (click)="openMenu(loan?.id, loan?.name)">
+                <ion-icon color="light" slot="icon-only" name="menu"></ion-icon>
+              </ion-button>
+              <ion-label>
+                <h2>{{loan?.name}} Summary</h2>
+                Initial Loan: <strong>{{loan.initialloan | currency:"GBP"}}</strong><br />
+                Annual Payment: <strong>{{loan.annualpayments| currency:"GBP"}}</strong><br />
+                Balance: <strong>{{loan.balance | currency:"GBP"}}</strong><br />
+                Notes: <strong>{{loan.notes}}</strong>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+    <swiper-slide>
+      <ion-card>
+        <ion-card-header color="secondary"></ion-card-header>
+        <ion-card-content class="ion-padding" color="light">
+          <ion-list>
+            <ion-item>
+              <ion-button color="warning" shape="round" size="small" slot="end" (click)="openMenu(loan?.id, loan?.name)">
+                <ion-icon color="light" slot="icon-only" name="menu"></ion-icon>
+              </ion-button>
+              <ion-label>
+                <h2>{{loan?.name}} Detail</h2>
+                Creation Date: <strong>{{loan.date | date}}</strong><br />
+                Account Number: <strong>{{loan.number}}</strong><br />
+                Payment Frequency: <strong>{{loan.frequency}}</strong><br />
+                Payment Amount: <strong>{{loan.paymentamount | currency:"GBP"}}</strong>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+    <swiper-slide>
+      <ion-card>
+        <ion-card-header color="secondary"></ion-card-header>
+        <ion-card-content class="ion-padding" color="light">
+          <ion-list>
+            <ion-item>
+              <ion-button color="warning" shape="round" size="small" slot="end" (click)="openMenu(loan?.id, loan?.name)">
+                <ion-icon color="light" slot="icon-only" name="menu"></ion-icon>
+              </ion-button>
+              <ion-label>
+                <h2>{{loan?.name}} Security</h2>
+                Password Hint: <strong>{{loan.passwordhint}}</strong><br />
+                Memorable Place Hint: <strong>{{loan.memorableplace}}</strong><br />
+                Memorable Name Hint: <strong>{{loan.memorablename}}</strong><br />
+                Memorable Date Hint: <strong>{{loan.memorabledate}}</strong>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+  </swiper-container>
+  <ion-card>
+    <ion-card-header color="secondary">Loans Summary</ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>
+            Outstanding Debt: <strong>{{loanBalances | currency:"GBP"}}</strong>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            Loan Payments: <strong>{{loanPayments | currency:"GBP"}}</strong>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  </div>
+</ion-content>

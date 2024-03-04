@@ -1,0 +1,310 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title ion-text-center>Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="light">
+  <div style="vertical-align: top">
+  <ion-card>
+    <ion-card-header color="secondary"><strong>Settings:</strong></ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-input [(ngModel)]="settings.firstName" type="text" 
+        label="First Name: " (ionChange)="updateFirstName(settings.firstName)"  interface="popover"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="settings.lastName" type="text" 
+        label="Last Name: "(ionChange)="updateLastName(settings.lastName)" interface="popover"></ion-input>
+      </ion-item>
+
+
+      <ion-item (click)="showPicker = !showPicker">
+        <ion-input value="{{formattedDate}}" label="Date of Birth: " ></ion-input>
+      </ion-item>
+      <ion-datetime *ngIf="showPicker"
+        #datetime
+        [value]="dateValue"
+        size="cover"
+        presentation="date"
+        min="{{fromDate}}"
+        max="{{toDate}}"
+        (ionChange)="updateDOB(datetime.value)"
+        showDefaultButtons="false">
+      </ion-datetime>
+
+      <ion-item>
+        <ion-select [(ngModel)]="settings.taxyear" position="stacked" (ionChange)="updateTaxYear(settings.taxyear, settings)"
+        label="Change Tax Year: " interface="popover">
+          <ion-select-option *ngFor="let year of years" value="{{year.taxyear}}:{{year.id}}">{{year.taxyear}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox position="stacked" [(ngModel)]="settings.enableupdates" 
+        label="Enable Price Updates: " (ionChange)="enableUpdates(settings.enableupdates)"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox position="stacked" [(ngModel)]="settings.enablebudgets"
+        label="Enable budgets: " (ionChange)="enableBudgets(settings.enablebudgets)"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox position="stacked" [(ngModel)]="settings.enableportfolios"
+        label="Enable stocks, shares and unit trusts: " (ionChange)="enablePortfolios(settings.enableportfolios)"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox position="stacked" [(ngModel)]="settings.enablebonds"
+        label="Enable fixed bonds: " (ionChange)="enableBonds(settings.enablebonds)"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox position="stacked" [(ngModel)]="settings.enablesavings"
+        label="Enable cashsavings: " (ionChange)="enableSavings(settings.enablesavings)"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox position="stacked" [(ngModel)]="settings.enableoneoffs"
+        label="Enable one offs: " (ionChange)="enableOneoffs(settings.enableoneoffs)"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox position="stacked" [(ngModel)]="settings.enablepensions"
+        label="Enable pensions: " (ionChange)="enablePensions(settings.enablepensions)"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox position="stacked" [(ngModel)]="settings.enablesalaries"
+        label="Enable salaries: " (ionChange)="enableSalaries(settings.enablesalaries)"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox position="stacked" [(ngModel)]="settings.enableproperty"
+        label="Enable property investments: " (ionChange)="enableProperty(settings.enableproperty)"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox position="stacked" [(ngModel)]="settings.enableloans"
+        label="Enable loans: " (ionChange)="enableLoans(settings.enableloans)"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox position="stacked" [(ngModel)]="settings.enabledebts"
+        label="Enable debts: " (ionChange)="enableDebts(settings.enabledebts)"></ion-checkbox>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header color="secondary"><strong>Inflation & Growth Settings:</strong></ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-range [(ngModel)]="settings.Y1CPIRate" type="number" min="-5.00" max="10.00" step="0.25" pin snaps 
+        label="Y1 Budget CPI: {{settings.Y1CPIRate}}%" debounce="2000" (ionChange)="updateY1CPIRate(settings.Y1CPIRate)">
+          <p slot="start">-5% </p>
+          <p slot="end"> 10%</p>
+        </ion-range> 
+      </ion-item>
+
+      <ion-item>
+        <ion-range [(ngModel)]="settings.Y2CPIRate" type="number" min="-5.00" max="10.00" step="0.25" pin snaps 
+        label="Y2 Budget CPI: {{settings.Y2CPIRate}}%" debounce="2000" (ionChange)="updateY2CPIRate(settings.Y2CPIRate)">
+          <p slot="start">-5% </p>
+          <p slot="end"> 10%</p>
+        </ion-range> 
+      </ion-item>
+
+      <ion-item>
+        <ion-range [(ngModel)]="settings.Y3CPIRate" type="number" min="-5.00" max="10.00" step="0.25" pin snaps 
+        label="Y3 Budget CPI: {{settings.Y3CPIRate}}%" debounce="2000" (ionChange)="updateY3CPIRate(settings.Y3CPIRate)">
+          <p slot="start">-5% </p>
+          <p slot="end"> 10%</p>
+        </ion-range> 
+      </ion-item>
+
+      <ion-item>
+        <ion-range [(ngModel)]="settings.Y4CPIRate" type="number" min="-5.00" max="10.00" step="0.25" pin snaps 
+        label="Y4 Budget CPI: {{settings.Y4CPIRate}}%" debounce="2000" (ionChange)="updateY4CPIRate(settings.Y4CPIRate)">
+          <p slot="start">-5% </p>
+          <p slot="end"> 10%</p>
+        </ion-range> 
+      </ion-item>
+
+      <ion-item>
+        <ion-range [(ngModel)]="settings.Y5CPIRate" type="number" min="-5.00" max="10.00" step="0.25" pin snaps 
+        label="Y5 Budget CPI: {{settings.Y5CPIRate}}%" debounce="2000" (ionChange)="updateY5CPIRate(settings.Y5CPIRate)">
+          <p slot="start">-5% </p>
+          <p slot="end"> 10%</p>
+        </ion-range> 
+      </ion-item>
+
+      <ion-item>
+        <ion-range [(ngModel)]="settings.Y6CPIRate" type="number" min="-5.00" max="10.00" step="0.25" pin snaps 
+        label="Y6 Budget CPI: {{settings.Y6CPIRate}}%" debounce="2000" (ionChange)="updateY6CPIRate(settings.Y6CPIRate)">
+          <p slot="start">-5% </p>
+          <p slot="end"> 10%</p>
+        </ion-range> 
+      </ion-item>
+
+      <ion-item>
+        <ion-range [(ngModel)]="settings.Y7CPIRate" type="number" min="-5.00" max="10.00" step="0.25" pin snaps 
+        label="Y7 Budget CPI: {{settings.Y7CPIRate}}%" debounce="2000" (ionChange)="updateY7CPIRate(settings.Y7CPIRate)">
+          <p slot="start">-5% </p>
+          <p slot="end"> 10%</p>
+        </ion-range> 
+      </ion-item>
+
+      <ion-item>
+        <ion-range [(ngModel)]="settings.Y8CPIRate" type="number" min="-5.00" max="10.00" step="0.25" pin snaps 
+        label="Y8 Budget CPI: {{settings.Y8CPIRate}}%" debounce="2000" (ionChange)="updateY8CPIRate(settings.Y8CPIRate)">
+          <p slot="start">-5% </p>
+          <p slot="end"> 10%</p>
+        </ion-range> 
+      </ion-item>
+
+      <ion-item>
+        <ion-range [(ngModel)]="settings.Y9CPIRate" type="number" min="-5.00" max="10.00" step="0.25" pin snaps 
+        label="Y9 Budget CPI: {{settings.Y9CPIRate}}%" debounce="2000" (ionChange)="updateY9CPIRate(settings.Y9CPIRate)">
+          <p slot="start">-5% </p>
+          <p slot="end"> 10%</p>
+        </ion-range> 
+      </ion-item>
+
+      <ion-item>
+        <ion-range [(ngModel)]="settings.Y20CPIRate" type="number" min="-5.00" max="10.00" step="0.25" pin snaps 
+        label="Y10-19 Budget CPI: {{settings.Y20CPIRate}}%" debounce="2000" (ionChange)="updateY20CPIRate(settings.Y20CPIRate)">
+          <p slot="start">-5% </p>
+          <p slot="end"> 10%</p>
+        </ion-range> 
+      </ion-item>
+
+      <ion-item>
+        <ion-range [(ngModel)]="settings.Y30CPIRate" type="number" min="-5.00" max="10.00" step="0.25" pin snaps 
+        label="Y20-30 Budget CPI: {{settings.Y30CPIRate}}%" debounce="2000" (ionChange)="updateY30CPIRate(settings.Y30CPIRate)">
+          <p slot="start">-5% </p>
+          <p slot="end"> 10%</p>
+        </ion-range> 
+      </ion-item>
+
+      <ion-item>
+        <ion-range [(ngModel)]="settings.dividendRate" type="number" min="-5.00" max="10.00" step="0.25" pin snaps 
+        label="Dividend Inflation Rate: {{settings.dividendRate}}%" debounce="2000" (ionChange)="updateDividendRate(settings.dividendRate)">
+          <p slot="start">-5% </p>
+          <p slot="end"> 10%</p>
+        </ion-range>
+      </ion-item>
+
+      <ion-item>
+        <ion-range [(ngModel)]="settings.investmentGrowthRate" type="number" min="-5.00" max="10.00" step="0.25" pin snaps 
+        label="Investment Growth Rate: {{settings.investmentGrowthRate}}%" debounce="2000" (ionChange)="updateInvestmentGrowthRate(settings.investmentGrowthRate)">
+          <p slot="start">-5% </p>
+          <p slot="end"> 10%</p>
+        </ion-range>
+      </ion-item>
+
+      <ion-item>
+        <ion-range [(ngModel)]="settings.propertyGrowthRate" type="number" min="-5.00" max="10.00" step="0.25" pin snaps 
+        label="Property Growth Rate: {{settings.propertyGrowthRate}}%" debounce="2000" (ionChange)="updatePropertyGrowthRate(settings.propertyGrowthRate)">
+          <p slot="start">-5% </p>
+          <p slot="end"> 10%</p>
+        </ion-range>
+      </ion-item>
+
+      <ion-item>
+        <ion-range [(ngModel)]="settings.Y1PensionRate" type="number" min="-5.00" max="10.00" step="0.25" pin snaps 
+        label="Y1 Pension Inflation Rate: {{settings.Y1PensionRate}}%" debounce="2000" (ionChange)="updateY1PensionRate(settings.Y1PensionRate)">
+          <p slot="start">-5% </p>
+          <p slot="end"> 10%</p>
+        </ion-range>
+      </ion-item>
+
+      <ion-item>
+        <ion-range [(ngModel)]="settings.Y2PensionRate" type="number" min="-5.00" max="10.00" step="0.25" pin snaps 
+        label="Y2 Pension Inflation Rate: {{settings.Y2PensionRate}}%" debounce="2000" (ionChange)="updateY2PensionRate(settings.Y2PensionRate)">
+          <p slot="start">-5% </p>
+          <p slot="end"> 10%</p>
+        </ion-range>
+      </ion-item>
+
+      <ion-item>
+        <ion-range [(ngModel)]="settings.Y3PensionRate" type="number" min="-5.00" max="10.00" step="0.25" pin snaps 
+        label="Y3 Pension Inflation Rate: {{settings.Y3PensionRate}}%" debounce="2000" (ionChange)="updateY3PensionRate(settings.Y3PensionRate)">
+          <p slot="start">-5% </p>
+          <p slot="end"> 10%</p>
+        </ion-range>
+      </ion-item>
+
+      <ion-item>
+        <ion-range [(ngModel)]="settings.Y4PensionRate" type="number" min="-5.00" max="10.00" step="0.25" pin snaps 
+        label="Y4 Pension Inflation Rate: {{settings.Y4PensionRate}}%" debounce="2000" (ionChange)="updateY4PensionRate(settings.Y4PensionRate)">
+          <p slot="start">-5% </p>
+          <p slot="end"> 10%</p>
+        </ion-range>
+      </ion-item>
+
+      <ion-item>
+        <ion-range [(ngModel)]="settings.Y5PensionRate" type="number" min="-5.00" max="10.00" step="0.25" pin snaps 
+        label="Y5 Pension Inflation Rate: {{settings.Y5PensionRate}}%" debounce="2000" (ionChange)="updateY5PensionRate(settings.Y5PensionRate)">
+          <p slot="start">-5% </p>
+          <p slot="end"> 10%</p>
+        </ion-range>
+      </ion-item>
+
+      <ion-item>
+        <ion-range [(ngModel)]="settings.Y6PensionRate" type="number" min="-5.00" max="10.00" step="0.25" pin snaps 
+        label="Y6 Pension Inflation Rate: {{settings.Y6PensionRate}}%" debounce="2000" (ionChange)="updateY6PensionRate(settings.Y6PensionRate)">
+          <p slot="start">-5% </p>
+          <p slot="end"> 10%</p>
+        </ion-range>
+      </ion-item>
+
+      <ion-item>
+        <ion-range [(ngModel)]="settings.Y7PensionRate" type="number" min="-5.00" max="10.00" step="0.25" pin snaps 
+        label="Y7 Pension Inflation Rate: {{settings.Y7PensionRate}}%" debounce="2000" (ionChange)="updateY7PensionRate(settings.Y7PensionRate)">
+          <p slot="start">-5% </p>
+          <p slot="end"> 10%</p>
+        </ion-range>
+      </ion-item>
+
+      <ion-item>
+        <ion-range [(ngModel)]="settings.Y8PensionRate" type="number" min="-5.00" max="10.00" step="0.25" pin snaps 
+        label="Y8 Pension Inflation Rate: {{settings.Y8PensionRate}}%" debounce="2000" (ionChange)="updateY8PensionRate(settings.Y8PensionRate)">
+          <p slot="start">-5% </p>
+          <p slot="end"> 10%</p>
+        </ion-range>
+      </ion-item>
+
+      <ion-item>
+        <ion-range [(ngModel)]="settings.Y9PensionRate" type="number" min="-5.00" max="10.00" step="0.25" pin snaps 
+        label="Y9 Pension Inflation Rate: {{settings.Y9PensionRate}}%" debounce="2000" (ionChange)="updateY9PensionRate(settings.Y9PensionRate)">
+          <p slot="start">-5% </p>
+          <p slot="end"> 10%</p>
+        </ion-range>
+      </ion-item>
+
+      <ion-item>
+        <ion-range [(ngModel)]="settings.Y20PensionRate" type="number" min="-5.00" max="10.00" step="0.25" pin snaps 
+        label="Y10-19 Pension Inflation Rate: {{settings.Y20PensionRate}}%" debounce="2000" (ionChange)="updateY20PensionRate(settings.Y20PensionRate)">
+          <p slot="start">-5% </p>
+          <p slot="end"> 10%</p>
+        </ion-range>
+      </ion-item>
+
+      <ion-item>
+        <ion-range [(ngModel)]="settings.Y30PensionRate" type="number" min="-5.00" max="10.00" step="0.25" pin snaps 
+        label="Y20-30 Pension Inflation Rate: {{settings.Y30PensionRate}}%" debounce="2000" (ionChange)="updateY30PensionRate(settings.Y30PensionRate)">
+          <p slot="start">-5% </p>
+          <p slot="end"> 10%</p>
+        </ion-range>
+      </ion-item>
+
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header color="secondary"><strong>Spend order ({{settings.ordercount - 1}}):</strong></ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-reorder-group (ionItemReorder)="reorderItems($event)" disabled="false">
+          <ion-item *ngFor="let item of items">
+            <ion-label>{{item.order}}. {{item.name}} ({{item.type}})</ion-label>
+            <ion-reorder></ion-reorder>
+          </ion-item>
+        </ion-reorder-group>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  </div>
+</ion-content>

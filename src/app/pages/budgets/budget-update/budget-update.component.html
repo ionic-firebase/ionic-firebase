@@ -1,0 +1,12 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/budgets/budget-list"></ion-back-button>
+    </ion-buttons>
+    <ion-title ion-text-center>Update {{budget.description}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="light">
+  <app-budget-form  #budgetForm (formSubmitted)="updateBudget($event)" [actionButtonText]="'Update Budget'"></app-budget-form>
+</ion-content>

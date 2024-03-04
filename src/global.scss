@@ -24,3 +24,34 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+/* NGX Datatable CSS */
+@import '~assets/styles/ngx-datatable/_index.css';
+@import '~assets/styles/ngx-datatable/_dark.css';
+@import '~assets/styles/ngx-datatable/_sipp.css';
+@import '~assets/styles/ngx-datatable/_isas.css';
+@import '~assets/styles/ngx-datatable/_trading.css';
+@import '~assets/styles/ngx-datatable/_bonds.css';
+@import '~assets/styles/ngx-datatable/_savings.css';
+@import '~assets/styles/ngx-datatable/_property.css';
+@import '~assets/styles/ngx-datatable/_loans.css';
+@import '~assets/styles/ngx-datatable/_debts.css';
+@import '~assets/styles/ngx-datatable/_forecast.css';
+@import '~assets/styles/ngx-datatable/_material.css';
+@import '~assets/styles/ngx-datatable/_bootstrap.css';
+@import '~assets/styles/ngx-datatable/_icons.css';
+
+@import 'swiper/scss';
+@import '@ionic/angular/css/ionic-swiper';
+@import 'swiper/scss';
+@import 'swiper/scss/autoplay';
+@import 'swiper/scss/keyboard';
+@import 'swiper/scss/pagination';
+@import 'swiper/scss/scrollbar';
+@import 'swiper/scss/zoom';
+@import '@ionic/angular/css/ionic-swiper';
+
+
+ion-datetime {
+    --background: #20282f;
+}

@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons shape="round" size="small" slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+    <ion-button shape="round" size="small" slot="end" (click)="createPension()">
+      <ion-icon color="light" slot="icon-only" name="add-circle"></ion-icon>
+    </ion-button>
+    <ion-title ion-text-center>Pensions</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="light">
+  <div style="vertical-align: top">
+  <ion-card *ngFor="let pension of pensionList">
+    <ion-card-header color="secondary"></ion-card-header>
+    <ion-card-content class="ion-padding" color="light">
+      <ion-list>
+        <ion-item>
+          <ion-button color="warning" shape="round" size="small" slot="end" (click)="openMenu(pension?.id)">
+            <ion-icon color="light" slot="icon-only" name="menu"></ion-icon>
+          </ion-button>
+          <ion-label>
+            <h2>{{pension?.name}}</h2>
+            Starts: <strong>{{pension.startdate | date}}</strong><br />
+            Account: <strong>{{pension.account}}</strong><br />
+            Online ID: <strong>{{pension.onlineid}}</strong><br />
+            Password Hint: <strong>{{pension.passwordhint}}</strong><br />
+            Payment: <strong>{{pension.income | currency:"GBP"}}</strong><br />
+            Payable: <strong>{{pension.frequency}}</strong><br />
+            Annual Income: <strong>{{pension.annualincome | currency:"GBP"}}</strong><br />
+            Taxable? <strong>{{pension.taxable}}</strong><br />
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header color="secondary">Total Income: {{pensionIncomeTotal | currency:"GBP"}}</ion-card-header>
+  </ion-card>
+  </div>
+</ion-content>

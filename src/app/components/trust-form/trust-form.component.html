@@ -1,0 +1,116 @@
+<form [formGroup]="trustForm">
+    <ion-card>
+      <ion-card-header color="secondary"></ion-card-header>
+      <ion-card-content class="ion-padding" color="light" width="100%">
+        <ion-list>
+  
+          <ion-item (click)="showPicker = !showPicker">
+            <ion-input value="{{formattedDate}}"
+            label="Date"></ion-input>
+          </ion-item>
+          <ion-datetime *ngIf="showPicker"
+            #datetime
+            [value]="dateValue"
+            size="cover"
+            presentation="date"
+            min="{{fromDate}}"
+            max="{{toDate}}"
+            (ionChange)="dateChanged(datetime.value)"
+            showDefaultButtons="false">
+          </ion-datetime>
+  
+          <ion-item>
+            <ion-input formControlName="name" type="text" placeholder="What's your trust's name?"
+              [class.invalid]="!trustForm.controls['name'].valid&& trustForm.controls['name'].touched"
+              label="Name">
+            </ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!trustForm.controls['name'].valid &&
+            trustForm.controls['name'].touched">
+            <ion-label>Please enter trust name.</ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-input formControlName="ticker" type="text" placeholder="Trust's ticker?"
+              [class.invalid]="!trustForm.controls['ticker'].valid&& trustForm.controls['ticker'].touched"
+              label="Trust ticker">
+            </ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!trustForm.controls['ticker'].valid &&
+            trustForm.controls['ticker'].touched">
+            <ion-label>Please enter trust ticker.</ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-input formControlName="price" type="number" placeholder="p"
+              [class.invalid]="!trustForm.controls['price'].valid&& trustForm.controls['price'].touched"
+              label="Transaction Price (pence)">
+            </ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!trustForm.controls['price'].valid &&
+            trustForm.controls['price'].touched">
+            <ion-label>Please enter transaction price.</ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-input formControlName="quantity" type="number"
+              [class.invalid]="!trustForm.controls['quantity'].valid&& trustForm.controls['quantity'].touched"
+              label="Quantity">
+            </ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!trustForm.controls['quantity'].valid &&
+            trustForm.controls['quantity'].touched">
+            <ion-label>Please enter trust quantity.</ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-input formControlName="transactioncharge" type="number" placeholder="£"
+              [class.invalid]="!trustForm.controls['transactioncharge'].valid&& trustForm.controls['transactioncharge'].touched"
+              label="Transaction Charge">
+            </ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!trustForm.controls['transactioncharge'].valid &&
+            trustForm.controls['transactioncharge'].touched">
+            <ion-label>Please enter transaction charge.</ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-input formControlName="tax" type="number" placeholder="£"
+              [class.invalid]="!trustForm.controls['tax'].valid&& trustForm.controls['tax'].touched"
+              label="Transaction Tax">
+            </ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!trustForm.controls['tax'].valid &&
+            trustForm.controls['tax'].touched">
+            <ion-label>Please enter transaction tax.</ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-input formControlName="othercharges" type="number" placeholder="£"
+              [class.invalid]="!trustForm.controls['othercharges'].valid&& trustForm.controls['othercharges'].touched"
+              label="Other charges">
+            </ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!trustForm.controls['othercharges'].valid &&
+            trustForm.controls['othercharges'].touched">
+            <ion-label>Enter any other charges.</ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-input formControlName="trustyield" type="number" placeholder="%"
+              [class.invalid]="!trustForm.controls['trustyield'].valid&& trustForm.controls['trustyield'].touched"
+              label="Expected Yield (%)">
+            </ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!trustForm.controls['trustyield'].valid &&
+                    trustForm.controls['trustyield'].touched">
+            <ion-label>Enter est. dividend yield.</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+    <ion-button (click)="submitCredentials(trustForm)" expand="block" [disabled]="!trustForm.valid">
+      {{ actionButtonText }}
+    </ion-button>
+  </form>
+  

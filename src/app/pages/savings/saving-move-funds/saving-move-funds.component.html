@@ -1,0 +1,12 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Move Funds From {{currentSaving.name}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/savings/saving-list"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="light">
+  <app-move-form  #moveForm (formSubmitted)="addMove($event)" [actionButtonText]="'Move Cash'"></app-move-form>
+</ion-content>

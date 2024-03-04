@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons shape="round" size="small" slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+    <ion-button shape="round" size="small" slot="end" (click)="createOneoff()">
+      <ion-icon color="light" slot="icon-only" name="add-circle"></ion-icon>
+    </ion-button>
+    <ion-title ion-text-center>Oneoff Financial Events</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="light">
+  <div style="vertical-align: top">
+  <ion-card *ngFor="let oneoff of oneoffList">
+    <ion-card-content class="ion-padding" color="light">
+      <ion-list>
+        <ion-item>
+          <ion-button color="warning" shape="round" size="small" slot="end" (click)="openMenu(oneoff.id)">
+            <ion-icon color="light" slot="icon-only" name="menu"></ion-icon>
+          </ion-button>
+          <ion-label>
+            <h2>{{oneoff.eventdate | date}}</h2>
+            Amount: <strong>{{oneoff.amount | currency:"GBP"}}</strong><br />
+            Type: <strong>{{oneoff.type}}</strong><br />
+            Notes: <strong>{{oneoff.notes}}</strong><br />
+            Forecast: <strong>{{oneoff.forecast}}</strong><br />
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  </div>
+</ion-content>

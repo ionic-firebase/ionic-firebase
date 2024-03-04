@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/portfolios/portfolio-list"></ion-back-button>
+    </ion-buttons>
+    <ion-title ion-text-center>{{portfolioName}}:&nbsp;Stock List</ion-title>
+    <ion-button shape="round" size="small" slot="end" aria-label="Add Stock" (click)="addStock()">
+      <ion-icon color="light" slot="icon-only" name="add-circle" aria-hidden="true"></ion-icon>
+    </ion-button>
+    <ion-button shape="round" size="small" slot="end" aria-label="Buy Stock" (click)="buyStock()">
+      <ion-icon color="light" slot="icon-only" name="logo-usd" aria-hidden="true"></ion-icon>
+    </ion-button>    
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content class="ion-padding" color="light">
+  <div style="vertical-align: top">
+  <ion-card *ngFor="let stock of stocks$ | async">
+    <ion-card-header color="secondary">{{stock.name}}</ion-card-header>
+    <ion-card-content class="ion-padding" color="light">
+      <ion-list>
+        <ion-item>
+          <ion-button color="warning" shape="round" size="small" slot="end" (click)="openMenu(stock.id)">
+            <ion-icon color="light" slot="icon-only" name="menu"></ion-icon>
+          </ion-button>
+          <ion-label>
+            Ticker: <strong>{{stock.ticker}}</strong><br />
+            Purchase Date: <strong>{{stock.date | date}}</strong><br />
+            Bought: <strong>{{stock.quantity}} &#64; {{ stock.price}}p</strong><br />
+            Total Cost: <strong>{{((stock.price * stock.quantity / 100) + 
+              stock.transactioncharge + stock.tax + stock.othercharges) | currency:"GBP"}}</strong><br /><br />
+            Current Value: <strong>{{stock.currentprice * stock.quantity / 100 | currency:"GBP"}}
+              ({{stock.quantity}} &#64; {{stock.currentprice}}p)</strong><br />
+            Gain: <strong>{{((stock.currentprice * stock.quantity / 100) - (stock.price * stock.quantity / 100) -
+              stock.transactioncharge - stock.tax - stock.othercharges) | currency:"GBP"}}
+              ({{((stock.currentprice * stock.quantity / 100) - (stock.price * stock.quantity / 100) -
+                stock.transactioncharge - stock.tax - stock.othercharges) / ((stock.price * stock.quantity / 100) +
+                stock.transactioncharge + stock.tax + stock.othercharges) | percent:"1.2"}})</strong><br /><br />
+            Expected Yield: <strong>{{stock.stockyield / 100 | percent:"1.2"}}</strong><br />
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      <ion-list width="100%">
+        <ion-item>         
+          Current Price:&nbsp;<strong>{{stock.currentprice}}p</strong>
+        </ion-item>
+      </ion-list>
+      <ion-list>
+        <ion-item style="display: flex; align-items: center">
+                <div item-left>New Price:&nbsp;</div>
+                <ion-input [(ngModel)]="stock.currentprice" type="text" inputmode="numeric" placeholder="p" class="ion-padding"></ion-input>
+                <ion-button shape="round" size="small" color="warning" expand="block"
+                  (click)="updateStockPrice(stock.id, stock.ticker, stock.currentprice)">
+                  <b>Update</b>
+                </ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header color="secondary">Summary</ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>
+            Shares Cost: <strong>{{stockBuyTotal | currency:"GBP"}}</strong><br />
+            Shares Value: <strong>{{stockCurrentTotal | currency:"GBP"}}</strong><br />
+            Shares P&L: <strong>{{(stockCurrentTotal - stockBuyTotal) | currency:"GBP"}}</strong><br />
+            Gain / Loss: <strong>{{(stockCurrentTotal - stockBuyTotal) / stockBuyTotal | percent:"1.2"}}</strong><br />
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  </div>
+</ion-content>

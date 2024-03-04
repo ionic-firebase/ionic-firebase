@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/savings/saving-list"></ion-back-button>
+    </ion-buttons>
+    <ion-title ion-text-center>Update {{saving.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content class="ion-padding" color="light">
+  <app-savings-form #savingsForm (formSubmitted)="updateSaving($event)" [actionButtonText]="'Update Saving'">
+  </app-savings-form>
+</ion-content>

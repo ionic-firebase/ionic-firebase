@@ -1,0 +1,47 @@
+<form [formGroup]="moveForm">
+  <ion-card>
+    <ion-card-header color="secondary"></ion-card-header>
+    <ion-card-content class="ion-padding" color="light" width="100%">
+      <ion-list>
+        <ion-item (click)="[showPicker = !showPicker]">
+          <ion-input value="{{formattedDate}}" 
+          label="Move Date"></ion-input>
+        </ion-item>
+        <ion-datetime *ngIf="showPicker"
+          #datetime
+          [value]="dateValue"
+          size="cover"
+          presentation="date"
+          min="{{fromDate}}"
+          max="{{toDate}}"
+          (ionChange)="dateChanged(datetime.value)"
+          showDefaultButtons="false">
+        </ion-datetime>
+
+        <ion-item>
+          <ion-select formControlName="moveto" interface="popover" 
+          label="Move To?" [class.invalid]="!moveForm.controls['moveto'].valid&& moveForm.controls['moveto'].touched">
+              <ion-select-option *ngFor="let move of movelist" value="{{move?.id}},{{move?.name}},{{move?.type}},{{move?.balance}}">{{move?.type}}:&nbsp;&nbsp;{{move?.name}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!moveForm.controls['moveto'].valid &&
+            moveForm.controls['moveto'].touched">
+          <ion-label>Please select the account to move cash into.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="amount" type="number" placeholder="%" 
+          label="Cash Amount" [class.invalid]="!moveForm.controls['amount'].valid&& moveForm.controls['amount'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!moveForm.controls['amount'].valid &&
+            moveForm.controls['amount'].touched">
+          <ion-label>Please enter the cash amount to transfer.</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-button (click)="submitCredentials(moveForm)" expand="block" [disabled]="!moveForm.valid">
+    {{ actionButtonText }}
+  </ion-button>
+</form>

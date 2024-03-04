@@ -1,0 +1,544 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/summary"></ion-back-button>
+    </ion-buttons>
+    <ion-button shape="round" size="small" slot="end" (click)="forecast()">
+      <ion-icon color="light" slot="icon-only" name="sunny"></ion-icon>
+    </ion-button>
+    <ion-title ion-text-center>Summary Detail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="light">
+  <ion-card>
+    <ion-card-content class="ion-padding" color="light">
+      <ngx-datatable class="sipp" 
+      [rows]="rowssipps" 
+      [rowHeight]="30" 
+      [columns]="columns" 
+      [columnMode]="'standard'"
+      [sortType]="'multi'" 
+      [headerHeight]="30" 
+      [footerHeight]="30" 
+      [scrollbarV]="true" 
+      [scrollbarH]="true">
+
+      <ngx-datatable-column name="SIPP Accounts" [sortable]="true" [width]="150">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.account}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Initial Amount" [sortable]="false" [width]="100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.initialamount | currency:"GBP"}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Cash" [sortable]="false" [width]="100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.cash | currency:"GBP"}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Invested" [sortable]="false" [width]="100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.invested | currency:"GBP"}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Total" [sortable]="false" [width]="100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.total | currency:"GBP"}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Profit" [sortable]="false" [width]="100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.profit | currency:"GBP"}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="% Profit" [sortable]="false" [width]="100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.percent | percent:"1.2"}}
+        </ng-template>
+      </ngx-datatable-column>
+
+    </ngx-datatable>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content class="ion-padding" color="light">
+      <ngx-datatable class="isas" 
+      [rows]="rowsisas" 
+      [rowHeight]="30" 
+      [columns]="columns" 
+      [columnMode]="'standard'"
+      [sortType]="'multi'" 
+      [headerHeight]="30" 
+      [footerHeight]="30" 
+      [scrollbarV]="true" 
+      [scrollbarH]="true">
+  
+        <ngx-datatable-column name="ISA Accounts" [sortable]="true" [width]="150">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.account}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Initial Amount" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.initialamount | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Cash" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.cash | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Invested" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.invested | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Total" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.total | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Profit" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.profit | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="% Profit" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.percent | percent:"1.2"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+      </ngx-datatable>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content class="ion-padding" color="light">
+      <ngx-datatable class="trading" 
+      [rows]="rowstrading" 
+      [rowHeight]="30" 
+      [columns]="columns" 
+      [columnMode]="'standard'"
+      [sortType]="'multi'" 
+      [headerHeight]="30" 
+      [footerHeight]="30" 
+      [scrollbarV]="true" 
+      [scrollbarH]="true">
+  
+        <ngx-datatable-column name="Trading Accounts" [sortable]="true" [width]="150">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.account}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Initial Amount" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.initialamount | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Cash" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.cash | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Invested" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.invested | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Total" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.total | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Profit" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.profit | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="% Profit" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.percent | percent:"1.2"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+      </ngx-datatable>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content class="ion-padding" color="light">
+      <ngx-datatable class="bonds" 
+      [rows]="rowsbonds" 
+      [rowHeight]="30" 
+      [columns]="columns" 
+      [columnMode]="'standard'"
+      [sortType]="'multi'" 
+      [headerHeight]="30" 
+      [footerHeight]="30" 
+      [scrollbarV]="true" 
+      [scrollbarH]="true">
+  
+        <ngx-datatable-column name="Bond Accounts" [sortable]="true" [width]="150">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.account}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Initial Amount" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.initialamount | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Cash" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.cash | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Invested" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.invested | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Total" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.total | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Profit" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.profit | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="% Profit" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.percent | percent:"1.2"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+      </ngx-datatable>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content class="ion-padding" color="light">
+      <ngx-datatable class="savings" 
+      [rows]="rowssavings" 
+      [rowHeight]="30" 
+      [columns]="columns" 
+      [columnMode]="'standard'"
+      [sortType]="'multi'" 
+      [headerHeight]="30" 
+      [footerHeight]="30" 
+      [scrollbarV]="true" 
+      [scrollbarH]="true">
+  
+        <ngx-datatable-column name="Saving Accounts" [sortable]="true" [width]="150">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.account}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Initial Amount" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.initialamount | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Cash" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.cash | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Invested" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.invested | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Total" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.total | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Profit" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.profit | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="% Profit" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.percent | percent:"1.2"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+      </ngx-datatable>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content class="ion-padding" color="light">
+      <ngx-datatable class="property" 
+      [rows]="rowsproperties" 
+      [rowHeight]="30" 
+      [columns]="columns" 
+      [columnMode]="'standard'"
+      [sortType]="'multi'" 
+      [headerHeight]="30" 
+      [footerHeight]="30" 
+      [scrollbarV]="true" 
+      [scrollbarH]="true">
+  
+        <ngx-datatable-column name="Properties" [sortable]="true" [width]="150">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.account}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Initial Amount" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.initialamount | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Cash" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.cash | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Invested" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.invested | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Total" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.total | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Profit" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.profit | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="% Profit" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.percent | percent:"1.2"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+      </ngx-datatable>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content class="ion-padding" color="light">
+      <ngx-datatable class="loans" 
+      [rows]="rowsloans" 
+      [rowHeight]="30" 
+      [columns]="columns" 
+      [columnMode]="'standard'"
+      [sortType]="'multi'" 
+      [headerHeight]="30" 
+      [footerHeight]="30" 
+      [scrollbarV]="true" 
+      [scrollbarH]="true">
+  
+        <ngx-datatable-column name="Loans" [sortable]="true" [width]="150">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.account}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Initial Amount" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.initialamount | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Cash" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.cash | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Outstanding" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.invested | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Net Outstanding" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.total | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Paid" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.profit | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="% Paid" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.percent | percent:"1.2"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+      </ngx-datatable>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content class="ion-padding" color="light">
+      <ngx-datatable class="debts" 
+      [rows]="rowsdebts" 
+      [rowHeight]="30" 
+      [columns]="columns" 
+      [columnMode]="'standard'"
+      [sortType]="'multi'" 
+      [headerHeight]="30" 
+      [footerHeight]="30" 
+      [scrollbarV]="true" 
+      [scrollbarH]="true">
+  
+        <ngx-datatable-column name="Debts" [sortable]="true" [width]="150">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.account}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Initial Debt" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.initialamount | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Cash" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.cash | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Outstanding" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.invested | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Net Outstanding" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.total | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Paid" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.profit | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="% Paid" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.percent | percent:"1.2"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+      </ngx-datatable>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content class="ion-padding" color="light">
+      <ngx-datatable class="dark" 
+      [rows]="rowstotals" 
+      [rowHeight]="30" 
+      [columns]="columns" 
+      [columnMode]="'standard'"
+      [sortType]="'multi'" 
+      [headerHeight]="30" 
+      [footerHeight]="30" 
+      [scrollbarV]="true" 
+      [scrollbarH]="true">
+  
+        <ngx-datatable-column name="Totals" [sortable]="true" [width]="150">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.account}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Initial Amount" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.initialamount | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Cash" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.cash | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Invested" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.invested | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Total" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.total | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="Profit" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.profit | currency:"GBP"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+        <ngx-datatable-column name="% Profit" [sortable]="false" [width]="100">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.percent | percent:"1.2"}}
+          </ng-template>
+        </ngx-datatable-column>
+  
+      </ngx-datatable>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

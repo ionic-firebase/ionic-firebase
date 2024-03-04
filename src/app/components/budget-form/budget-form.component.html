@@ -1,0 +1,77 @@
+<form [formGroup]="budgetForm">
+  <ion-card>
+    <ion-card-header color="secondary"></ion-card-header>
+    <ion-card-content class="ion-padding" color="light" width="100%">
+      <ion-item (click)="[showPicker = !showPicker]">
+        <ion-input value="{{formattedDate}}" label="Budget Item Start Date"></ion-input>
+      </ion-item>
+      <ion-datetime *ngIf="showPicker"
+        #datetime
+        [value]="dateValue"
+        size="cover"
+        presentation="date"
+        min="{{fromDate}}"
+        max="{{toDate}}"
+        (ionChange)="dateChanged(datetime.value)"
+        showDefaultButtons="false">
+      </ion-datetime>
+      <ion-list>
+        <ion-item>
+          <ion-input formControlName="description" type="text" placeholder="Budget item description?"
+            label="Budget Name" [class.invalid]="!budgetForm.controls['description'].valid&& budgetForm.controls['description'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!budgetForm.controls['description'].valid &&
+            budgetForm.controls['description'].touched">
+          <ion-label>Please enter a budget description.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="amount" type="number" placeholder="£"
+          label="Regular Amount" [class.invalid]="!budgetForm.controls['amount'].valid&& budgetForm.controls['amount'].touched">
+          </ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!budgetForm.controls['amount'].valid &&
+            budgetForm.controls['amount'].touched">
+          <ion-label>Please enter the amount.</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-select formControlName="frequency" interface="popover" 
+          label="Frequency" [class.invalid]="!budgetForm.controls['frequency'].valid&& budgetForm.controls['frequency'].touched">
+          <ion-select-option value="Weekly">Weekly</ion-select-option>
+          <ion-select-option value="Monthly">Monthly</ion-select-option>
+          <ion-select-option value="Quarterly">Quarterly</ion-select-option>
+          <ion-select-option value="Annual">Annually</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!budgetForm.controls['frequency'].valid &&
+            budgetForm.controls['frequency'].touched">
+          <ion-label>Please select the amount frequency.</ion-label>
+        </ion-item>
+
+        <ion-item (click)="showPicker = !showPicker">
+          <ion-input label="Review Date"  value="{{formattedReviewDate}}"></ion-input>
+        </ion-item>
+        <ion-datetime *ngIf="showPicker"
+          #datetime
+          [value]="reviewValue"
+          size="cover"
+          presentation="date"
+          min="{{fromDate}}"
+          max="{{toDate}}"
+          (ionChange)="reviewChanged(datetime.value)"
+          showDefaultButtons="false">
+        </ion-datetime>
+
+        <ion-item>
+          <ion-input formControlName="notes" type="text" label="Notes">
+          </ion-input>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-button (click)="submitCredentials(budgetForm)" expand="block" [disabled]="!budgetForm.valid">
+    {{ actionButtonText }}
+  </ion-button>
+</form>

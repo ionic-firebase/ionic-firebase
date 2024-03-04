@@ -1,0 +1,48 @@
+<form [formGroup]="transactionForm"> 
+    <ion-card>
+      <ion-card-header color="secondary"></ion-card-header>
+      <ion-card-content class="ion-padding" color="light" width="100%">
+        <ion-list>
+  
+          <ion-item (click)="showPicker = !showPicker">
+            <ion-input value="{{formattedDate}}"
+            label="Transaction Date"></ion-input>
+          </ion-item>
+          <ion-datetime *ngIf="showPicker"
+            #datetime
+            [value]="dateValue"
+            size="cover"
+            presentation="date"
+            min="{{fromDate}}"
+            max="{{toDate}}"
+            (ionChange)="dateChanged(datetime.value)"
+            showDefaultButtons="false">
+          </ion-datetime>
+        
+          <ion-item>
+            <ion-select formControlName="type" interface="popover" label="Transaction Type?"
+              [class.invalid]="!transactionForm.controls['type'].valid&& transactionForm.controls['type'].touched">
+              <ion-select-option *ngFor="let dropdown of actionDropdowns" value="{{dropdown.value}}">{{dropdown.name}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        
+          <ion-item>
+            <ion-input formControlName="description" type="text" placeholder="Description?"
+            label="Transaction Description"
+              [class.invalid]="!transactionForm.controls['description'].valid&& transactionForm.controls['description'].touched">
+            </ion-input>
+          </ion-item>
+  
+          <ion-item>
+            <ion-input formControlName="cashamount" type="number" placeholder="Amount?"
+            label="Transaction Amount"
+              [class.invalid]="!transactionForm.controls['cashamount'].valid&& transactionForm.controls['cashamount'].touched">
+            </ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+    <ion-button (click)="submitCredentials(transactionForm)" expand="block" [disabled]="!transactionForm.valid">
+      {{ actionButtonText }}
+    </ion-button>
+  </form>

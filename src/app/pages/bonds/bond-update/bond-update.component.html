@@ -1,0 +1,12 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/bonds/bond-list"></ion-back-button>
+    </ion-buttons>
+    <ion-title ion-text-center>Update Bond</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="light">
+  <app-bond-form  #bondForm (formSubmitted)="updateBond($event)" [actionButtonText]="'Update Bond'"></app-bond-form>
+</ion-content>

@@ -1,0 +1,12 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/trusts/trust-list/{{portfolioId}}"></ion-back-button>
+    </ion-buttons>
+    <ion-title ion-text-center>Add Trust in {{portfolioName}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="light">
+  <app-trust-form #trustForm (formSubmitted)="addTrust($event)" [actionButtonText]="'Add Trust'"></app-trust-form>
+</ion-content>

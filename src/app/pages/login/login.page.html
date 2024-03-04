@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title ion-text-center>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="light">
+  <ion-card>
+    <ion-card-content>
+      <app-auth-form  #loginForm (formSubmitted)="loginUser($event)" [actionButtonText]="'Login'"></app-auth-form>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-button color="secondary" expand="block" routerLink="/signup">
+        Create a new account
+      </ion-button> 
+
+      <ion-button color="secondary" expand="block" routerLink="/reset-password">
+        I forgot my password
+      </ion-button>
+
+      <ion-button color="secondary" expand="block" (click)="logout()">
+        Logout
+      </ion-button>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>

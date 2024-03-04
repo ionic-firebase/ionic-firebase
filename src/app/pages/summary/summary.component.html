@@ -1,0 +1,156 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-button shape="round" size="small" slot="end" (click)="summaryDetails()">
+      <ion-icon color="light" slot="icon-only" name="menu"></ion-icon>
+    </ion-button>
+    <ion-button shape="round" size="small" slot="end" (click)="forecast()">
+      <ion-icon color="light" slot="icon-only" name="sunny"></ion-icon>
+    </ion-button>
+    <ion-title ion-text-center>Summary - Tax Year {{taxyear}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding" color="light">
+  <div style="vertical-align: top">
+    <swiper-container>
+      <swiper-slide>
+      <ion-card>
+        <ion-card-header color="secondary"><strong>Income / Costs:</strong></ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <ion-item>
+              <ion-label>
+                <h3><strong>Portfolios</strong></h3>
+                Stocks: <strong>{{stockDividend | currency:"GBP"}}</strong><br />
+                Trusts: <strong>{{trustDividend | currency:"GBP"}}</strong><br />
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <h3><strong>Savings</strong></h3>
+                Savings: <strong>{{savingsIncome | currency:"GBP"}}</strong><br />
+                Bonds: <strong>{{bondIncome | currency:"GBP"}}</strong><br /><br />
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <h3><strong>Salaries</strong></h3>
+                Salaries: <strong>{{salaryIncome | currency:"GBP"}}</strong><br />
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <h3><strong>Pensions</strong></h3>
+                Pensions: <strong>{{pensionIncome | currency:"GBP"}}</strong><br />
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <h3><strong>Property</strong></h3>
+                Property: <strong>{{propertyIncome | currency:"GBP"}}</strong><br />
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <h3><strong>Loans</strong></h3>
+                Loans: <strong>{{loansPayments | currency:"GBP"}}</strong><br />
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <h3><br><strong>Gross Income: {{stockDividend + trustDividend + savingsIncome + bondIncome + salaryIncome
+                  + pensionIncome + propertyIncome + loansPayments | currency:"GBP"}}</strong></h3><br>
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <h3><strong>Budget</strong></h3>
+                Budget: <strong>({{budgetSpends | currency:"GBP"}})</strong><br />
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <h3><strong>Debt Payments</strong></h3>
+                Debts: <strong>({{debtsPayments | currency:"GBP"}})</strong><br />
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <h3><br><strong>Total Costs: ({{budgetSpends + debtsPayments | currency:"GBP"}})</strong></h3><br>
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <h3><strong>Net Income: {{stockDividend + trustDividend + savingsIncome + bondIncome + salaryIncome
+                  + pensionIncome + propertyIncome + loansPayments - budgetSpends - debtsPayments | currency:"GBP"}}</strong></h3>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+    <swiper-slide>
+      <ion-card>
+        <ion-card-header color="secondary"><strong>Asset Breakdown:</strong></ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <ion-item>
+              <ion-label>
+                <h3><strong>Portfolios</strong></h3>
+                Cash: <strong>{{portfolioCashBalance | currency:"GBP"}}</strong><br />
+                Stocks: <strong>{{stocksBalance | currency:"GBP"}}</strong><br />
+                Trusts: <strong>{{trustsBalance | currency:"GBP"}}</strong><br />
+                Total: <strong>{{(portfolioCashBalance + stocksBalance + trustsBalance) | currency:"GBP"}}</strong><br />
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <h3><strong>Savings</strong></h3>
+                Bonds: <strong>{{bondBalance | currency:"GBP"}}</strong><br />
+                Savings: <strong>{{savingsBalance | currency:"GBP"}}</strong><br />
+                Oneoffs: <strong>{{oneoffsBalance | currency:"GBP"}}</strong><br /><br />
+                Total: <strong>{{(bondBalance + savingsBalance + oneoffsBalance) | currency:"GBP"}}</strong><br />
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <h3><strong>Property</strong></h3>
+                Properties: <strong>{{propertyBalance | currency:"GBP"}}</strong><br />
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <h3><strong>Loans</strong></h3>
+                Loans: <strong>{{loansBalance | currency:"GBP"}}</strong><br />
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <h3><strong>Gross Assets</strong></h3>
+                Gross Assets: <strong>{{stocksBalance + trustsBalance + bondBalance + 
+                  propertyBalance + savingsBalance + oneoffsBalance + portfolioCashBalance + loansBalance | currency:"GBP"}}</strong><br />
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <h3><strong>Less Debts</strong></h3>
+                Debts: <strong>{{debtsBalance | currency:"GBP"}}</strong><br />
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <h3><strong>Net Assets</strong></h3>
+                Net Assets: <strong>{{stocksBalance + trustsBalance + bondBalance +
+                  propertyBalance + savingsBalance + oneoffsBalance + portfolioCashBalance + loansBalance - debtsBalance | currency:"GBP"}}</strong><br /><br />
+                  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+  </swiper-container>
+  </div>
+</ion-content>

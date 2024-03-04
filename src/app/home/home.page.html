@@ -1,11 +1,108 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title ion-text-center>MyInv - Tax Year: {{settings.taxyear}}</ion-title>
+    <ion-buttons shape="round" size="small" slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+    <ion-button shape="round" size="small" slot="end" (click)="goSettings()">
+      <ion-icon color="light" slot="icon-only" name="settings"></ion-icon>
+    </ion-button>
+    <ion-button shape="round" size="small" slot="end" (click)="logOut()">
+      <ion-icon color="light" slot="icon-only" name="log-out"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
-
-<ion-content [fullscreen]="true">
-  
+<ion-content class="ion-padding" color="light">
+  <ion-card>
+    <ion-card-header color="secondary">Stock Prices</ion-card-header>
+    <ion-card-content class="ion-padding" color="light">
+      <ion-list *ngFor="let stockrow of stockFoundList">
+          <ion-item>
+            <ion-grid style="background:#919eae">
+            <ion-row>
+              <ion-col>
+                <strong>{{stockrow.ticker}}&nbsp;&nbsp;({{stockrow.name}})</strong>
+              </ion-col>
+            </ion-row>
+            </ion-grid>
+          </ion-item>
+          <ion-item>
+            <ion-grid style="background:#FFFFFF">
+              <ion-row>
+                <ion-col><ion-input [(ngModel)]="stockrow.currentprice" type="number" 
+                  label="Update price: " placeholder="stockrow.currentprice"></ion-input>
+                </ion-col>
+                <ion-col>
+                  <ion-button shape="round" size="small" color="warning" 
+                    (click)="updateStocksArray(stockrow.ticker, stockrow.currentprice)">
+                    <b>Update</b>
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+          <ion-item>
+            <ion-grid style="background:#FFFFFF">
+              <ion-row>
+                <ion-col><ion-input [(ngModel)]="stockrow.stockyield" type="number" 
+                  label="Update yield %: " placeholder="stockrow.stockyield"></ion-input>
+                </ion-col>
+                <ion-col>
+                  <ion-button shape="round" size="small" color="warning" 
+                    (click)="updateStocksDivArray(stockrow.ticker, stockrow.stockyield)">
+                    <b>Update</b>
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header color="secondary">Trust Prices</ion-card-header>
+    <ion-card-content class="ion-padding" color="light">
+      <ion-list *ngFor="let trustrow of trustFoundList">
+          <ion-item>
+            <ion-grid style="background:#919eae">
+              <ion-row>
+                <ion-col>
+                  Ticker: <strong>{{trustrow.ticker}}&nbsp;&nbsp;({{trustrow.name}})</strong>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+          <ion-item>
+            <ion-grid style="background:#FFFFFF">
+              <ion-row>
+                <ion-col><ion-input [(ngModel)]="trustrow.currentprice" type="number" 
+                  label="Update Price: " placeholder="trustrow.currentprice"></ion-input>
+                </ion-col>
+                <ion-col>
+                  <ion-button shape="round" size="small" color="warning" 
+                    (click)="updateTrustsArray(trustrow.ticker, trustrow.currentprice)">
+                    <b>Update</b>
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+          <ion-item>
+            <ion-grid style="background:#FFFFFF">
+              <ion-row>
+                <ion-col><ion-input [(ngModel)]="trustrow.trustyield" type="number" 
+                  label="Update yield %: " placeholder="trustrow.trustyield"></ion-input>
+                </ion-col>
+                <ion-col>
+                  <ion-button shape="round" size="small" color="warning" 
+                    (click)="updateTrustsDivArray(trustrow.ticker, trustrow.trustyield)">
+                    <b>Update</b>
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

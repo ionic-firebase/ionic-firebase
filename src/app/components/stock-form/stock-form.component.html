@@ -1,0 +1,116 @@
+<form [formGroup]="stockForm">
+    <ion-card>
+      <ion-card-header color="secondary"></ion-card-header>
+      <ion-card-content class="ion-padding" color="light" width="100%">
+        <ion-list>
+  
+          <ion-item (click)="showPicker = !showPicker">
+            <ion-input value="{{formattedDate}}"
+            label="Date"></ion-input>
+          </ion-item>
+          <ion-datetime *ngIf="showPicker"
+            #datetime
+            [value]="dateValue"
+            size="cover"
+            presentation="date"
+            min="{{fromDate}}"
+            max="{{toDate}}"
+            (ionChange)="dateChanged(datetime.value)"
+            showDefaultButtons="false">
+          </ion-datetime>
+  
+          <ion-item>
+            <ion-input formControlName="name" type="text" placeholder="What's your stock's name?"
+              [class.invalid]="!stockForm.controls['name'].valid&& stockForm.controls['name'].touched"
+              label="Name">
+            </ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!stockForm.controls['name'].valid &&
+            stockForm.controls['name'].touched">
+            <ion-label>Please enter stock name.</ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-input formControlName="ticker" type="text" placeholder="Stock's ticker?"
+              [class.invalid]="!stockForm.controls['ticker'].valid&& stockForm.controls['ticker'].touched"
+              label="Stock ticker">
+            </ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!stockForm.controls['ticker'].valid &&
+            stockForm.controls['ticker'].touched">
+            <ion-label>Please enter stock ticker.</ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-input formControlName="price" type="number" placeholder="p"
+              [class.invalid]="!stockForm.controls['price'].valid&& stockForm.controls['price'].touched"
+              label="Transaction Price (pence)">
+            </ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!stockForm.controls['price'].valid &&
+            stockForm.controls['price'].touched">
+            <ion-label>Please enter transaction price.</ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-input formControlName="quantity" type="number"
+              [class.invalid]="!stockForm.controls['quantity'].valid&& stockForm.controls['quantity'].touched"
+              label="Quantity">
+            </ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!stockForm.controls['quantity'].valid &&
+            stockForm.controls['quantity'].touched">
+            <ion-label>Please enter stock quantity.</ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-input formControlName="transactioncharge" type="number" placeholder="£"
+              [class.invalid]="!stockForm.controls['transactioncharge'].valid&& stockForm.controls['transactioncharge'].touched"
+              label="Transaction Charge">
+            </ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!stockForm.controls['transactioncharge'].valid &&
+            stockForm.controls['transactioncharge'].touched">
+            <ion-label>Please enter transaction charge.</ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-input formControlName="tax" type="number" placeholder="£"
+              [class.invalid]="!stockForm.controls['tax'].valid&& stockForm.controls['tax'].touched"
+              label="Transaction Tax">
+            </ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!stockForm.controls['tax'].valid &&
+            stockForm.controls['tax'].touched">
+            <ion-label>Please enter transaction tax.</ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-input formControlName="othercharges" type="number" placeholder="£"
+              [class.invalid]="!stockForm.controls['othercharges'].valid&& stockForm.controls['othercharges'].touched"
+              label="Other charges">
+            </ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!stockForm.controls['othercharges'].valid &&
+            stockForm.controls['othercharges'].touched">
+            <ion-label>Enter any other charges.</ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-input formControlName="stockyield" type="number" placeholder="%"
+              [class.invalid]="!stockForm.controls['stockyield'].valid&& stockForm.controls['stockyield'].touched"
+              label="Expected Yield (%)">
+            </ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!stockForm.controls['stockyield'].valid &&
+                    stockForm.controls['stockyield'].touched">
+            <ion-label>Enter est. dividend yield.</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+    <ion-button (click)="submitCredentials(stockForm)" expand="block" [disabled]="!stockForm.valid">
+      {{ actionButtonText }}
+    </ion-button>
+  </form>
+  
